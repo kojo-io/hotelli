@@ -1,0 +1,18 @@
+<form name="branchForm" [formGroup]="amenityForm" novalidate fusePerfectScrollbar>
+    <br />
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start">
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>Amenity</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+                <mat-error>
+                    Please enter a description
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="accent" [disabled]="amenityForm.invalid" (click)="save()">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

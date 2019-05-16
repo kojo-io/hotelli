@@ -1,0 +1,14 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+<mat-card>
+    <mat-card-content>
+        <mat-tab-group mat-stretch-tabs [selectedIndex]="selectedIndex" (selectedTabChange)="tabchanged($event)">
+            <mat-tab>
+                <app-listbranch (componentEvent)="receiveSelectedindex($event)"></app-listbranch>
+            </mat-tab>
+            <mat-tab>
+                <app-new-branch (componentEvent)="receiveSelectedindex($event)"></app-new-branch>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>
+</div>

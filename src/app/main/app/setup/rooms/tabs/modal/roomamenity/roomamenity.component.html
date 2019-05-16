@@ -1,0 +1,56 @@
+<div fusePerfectScrollbar>
+    <div class="group">
+        <h2>Room {{data.number}}</h2>
+        <div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%">
+            <div fxLayout="column" fxFlex="50%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="applyFilter($event.target.value)" type="text" />
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxLayout="column" fxFlex="50%">
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start">
+            <div fxLayout="column" fxFlex="100%">
+                <table mat-table matSort [dataSource]="datasource">
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()">
+
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? itemSelected(elemant) : null"
+                                [checked]="selection.isSelected(elemant)">
+
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Description
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            {{ elemant.description }}
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" align="center"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start">
+        <div fxLayout="column" fxFlex="100%">
+            <button mat-button (click)="create()" color="accent">Save</button>
+        </div>
+    </div>
+</div>

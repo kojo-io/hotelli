@@ -1,0 +1,38 @@
+ <button mat-fab class="closebutton mat-warn" (click)="closeModal()">
+     <mat-icon>close</mat-icon>
+ </button>
+  <div id="search-bar" class="header mat-accent-bg p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start start"
+      fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+      <form [formGroup]="extendform" novalidate [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="search-input-wrapper mt-16 ml-8 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+              <label for="search" class="mr-8">
+                  <mat-datepicker-toggle matSuffix [for]="checkin" style="color:white"></mat-datepicker-toggle>
+              </label>
+              <mat-form-field class="m-0">
+                  <input matInput formControlName="CheckIn" [matDatepicker]="checkin" placeholder="Check In Date"
+                      [readonly]="true">
+                  <mat-datepicker #checkin></mat-datepicker>
+              </mat-form-field>
+              <label for="search" class="mr-8">
+                  <mat-datepicker-toggle matSuffix [for]="checkout" style="color:white"></mat-datepicker-toggle>
+              </label>
+              <mat-form-field class="m-0">
+                  <input matInput formControlName="CheckOut" [matDatepicker]="checkout" placeholder="Check Out Date"
+                      [readonly]="true">
+                  <mat-datepicker #checkout></mat-datepicker>
+              </mat-form-field>
+              <label for="search" class="mr-8">
+                  <mat-icon>night</mat-icon>
+              </label>
+              <mat-form-field class="m-0">
+                  <input matInput formControlName="Nights" placeholder="Nights" type="number" (change)="show()">
+              </mat-form-field>
+             
+              <button mat-button color="primary" (click)="save()">
+                   Save
+              </button>
+          </div>
+      </form>
+
+  </div>

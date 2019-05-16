@@ -1,0 +1,109 @@
+<div fusePerfectScrollbar>
+<div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" style="padding-left:10px">
+    <div fxLayout="column" fxFlex="50%">
+        <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyGuestFilter($event.target.value)" type="text" />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxLayout="column" fxFlex="50%">
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
+    <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutGap="0px">
+            <table mat-table matSort [dataSource]="guestsource" width="100%">
+
+                <ng-container matColumnDef="First Name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        First Name
+                    </th>
+                    <td mat-cell *matCellDef="let elemant">
+                        {{ elemant.firstName }}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Last Name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Last Name
+                    </th>
+                    <td mat-cell *matCellDef="let elemant">
+                        {{ elemant.lastName }}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Email
+                    </th>
+                    <td mat-cell *matCellDef="let elemant">
+                        {{ elemant.email }}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Contact">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Contact
+                    </th>
+                    <td mat-cell *matCellDef="let elemant">
+                        {{ elemant.contact }}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="AllowMail">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Mail Allowed
+                    </th>
+                    <td mat-cell *matCellDef="let elemant">
+                        <mat-checkbox [checked]="elemant.allowEmails " [labelPosition]="'before'" [disabled]="true">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="AllowSMS">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        SMS Allowed
+                    </th>
+                    <td mat-cell *matCellDef="let elemant">
+                        <mat-checkbox [checked]="elemant.allowSMS " [labelPosition]="'before'" [disabled]="true">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="AllowNews">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Event Promotions Allowed
+                    </th>
+                    <td mat-cell *matCellDef="let elemant">
+                        <mat-checkbox [checked]="elemant.allowPromotionsNewsletters" [labelPosition]="'before'"
+                            [disabled]="true"></mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                    <td mat-cell *matCellDef="let elemant">
+                        <button mat-button [matMenuTriggerFor]="notifyMenu" color="accent">
+                            <mat-icon matSuffix>edit</mat-icon> Action
+                        </button>
+
+                        <mat-menu #notifyMenu="matMenu" [overlapTrigger]="false">
+                            <button mat-menu-item (click)="getGuests(elemant.id)">
+                                Edit Guest Info
+                            </button>
+                            <button mat-menu-item (click)="openCheckins(elemant.id)">
+                                CheckIns
+                            </button>
+                            <button mat-menu-item (click)="openReserved(elemant.id)">
+                                Reservations
+                            </button>
+
+                        </mat-menu>
+                    </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="guestColumns; sticky: true" align="center"></tr>
+                <tr mat-row *matRowDef="let row; columns: guestColumns" class="element-row"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,70 @@
+
+     <div id="contacts" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+    <div id="search-bar" class="header mat-accent-bg p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+        <form [formGroup]="bookingForm" novalidate [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+            <div class="search-input-wrapper mt-16 ml-8 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <label for="search" class="mr-8">
+                    <mat-datepicker-toggle matSuffix [for]="checkin" style="color:white"></mat-datepicker-toggle>
+                </label>
+                <mat-form-field class="m-0">
+                    <input matInput formControlName="CheckIn" [matDatepicker]="checkin" placeholder="Check In Date"
+                        [readonly]="true" (dateChange)="changeDates()">
+                    <mat-datepicker #checkin></mat-datepicker>
+                </mat-form-field>
+                <label for="search" class="mr-8">
+                    <mat-datepicker-toggle matSuffix [for]="checkout" style="color:white"></mat-datepicker-toggle>
+                </label>
+                <mat-form-field class="m-0">
+                    <input matInput formControlName="CheckOut" [matDatepicker]="checkout" placeholder="Check Out Date"
+                        [readonly]="true" (dateChange)="changeDates()">
+                    <mat-datepicker #checkout></mat-datepicker>
+                </mat-form-field>
+                <label for="search" class="mr-8">
+                    <mat-icon>night</mat-icon>
+                </label>
+                <mat-form-field class="m-0">
+                    <input matInput formControlName="Nights" placeholder="Nights" type="number">
+                </mat-form-field>
+                <label for="search" class="mr-8">
+                    <mat-icon>wifi</mat-icon>
+                </label>
+                <mat-form-field class="m-0">
+                    <mat-select placeholder="Room amenities" formControlName="amenities" [multiple]="true">
+                        <mat-option *ngFor="let item of amenities" [value]="item.id">
+                            {{item.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <label for="search" class="mr-8">
+                    <mat-icon>persons</mat-icon>
+                </label>
+                <mat-form-field class="m-0">
+                    <input matInput formControlName="Adult" placeholder="Adults" type="number">
+                </mat-form-field>
+                <label for="search" class="mr-8">
+                    <mat-icon>persons</mat-icon>
+                </label>
+                <mat-form-field class="m-0">
+                    <input matInput formControlName="Children" placeholder="Children" type="number">
+                </mat-form-field>
+                <button mat-button color="primary" (click)="searchForm()">
+                    <mat-icon matSuffix>search</mat-icon> Search
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="content">
+        <div class="center p-24 pb-56" fusePerfectScrollbar>
+            <div>
+            <app-book></app-book>
+            </div>    
+        </div>    
+    </div>
+</div> 
+
+<!-- <div class="page-layout blank" fusePerfectScrollbar>
+<app-book></app-book>
+</div> -->

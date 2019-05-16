@@ -1,0 +1,18 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+    <!-- <mat-card>
+        <mat-card-content>
+        </mat-card-content>
+    </mat-card> -->
+
+    <div class="content mat-white-bg mat-elevation-z4">
+        <mat-tab-group mat-stretch-tabs [selectedIndex]="selectedIndex" (selectedTabChange)="tabchanged($event)">
+            <mat-tab label="All Rooms">
+                <app-list-rooms (componentEvent)="receiveSelectedindex($event)"></app-list-rooms>
+            </mat-tab>
+            <mat-tab label="New Room">
+                <app-new-room (componentEvent)="receiveSelectedindex($event)"></app-new-room>
+            </mat-tab>
+        </mat-tab-group>
+    
+    </div>
+</div>

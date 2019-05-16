@@ -1,0 +1,192 @@
+<div id="invoice" class="modern page-layout blank" fxLayout="row">
+
+    <div class="invoice-container">
+
+       
+        <div class="card">
+
+            <div class="header" fxLayout="row" fxLayoutAlign="space-between start">
+
+                <div class="ids" fxLayout="column">
+
+                    <div fxLayout="row" class="seller" fxLayoutAlign="start center">
+
+                        <div class="logo">
+                            <img [src]="hotel.logo">
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="detail">
+                            <div class="title">{{hotel.name}}</div>
+                            <div class="address">
+                                {{hotel.address}}
+                            </div>
+                            <div class="phone">
+                                <span>Phone:</span>
+                                {{hotel.contact}}
+                            </div>
+                            <div class="email">
+                                <span>Email:</span>
+                                {{hotel.email}}
+                            </div>
+                            <div class="website">
+                                <span>Web:</span>
+                                {{hotel.website}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" class="client" fxLayoutAlign="start center">
+                        <div class="label" fxLayout="row" fxLayoutAlign="end center">
+                            <div>CLIENT</div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="detail">
+                            <div class="title">{{guest.name}}</div>
+                            <!-- <div class="address">
+                                Spintex
+                            </div> -->
+                            <div class="phone">
+                                <span>Phone:</span>
+                                {{guest.contact}}
+                            </div>
+                            <div class="email">
+                                <span>Email:</span>
+                                {{guest.email}}
+                            </div>
+                            <!-- <div class="website">
+                                <span>Web:</span>
+
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <table class="summary"> 
+                    <tr class="code">
+                        <td class="label">ID</td>
+                        <td class="value">{{Rid}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">RECEIPT DATE</td>
+                        <td class="value">{{ date }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">TOTAL DUE</td>
+                        <td class="value">{{info.currency}} {{spend.total}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="content">
+                <table class="simple invoice-table">
+                    <thead>
+                        <tr>
+                            <th>FACILTY</th>
+                            <th>ITEM</th>
+                            <th>QUANTITY</th>
+                            <th>UNIT PRICE</th>
+                            <th></th>
+                            <th style="text-align: end">AMOUNT</th>
+                            <!-- <th class="text-right">TOTAL NIGHTS</th>
+                            <th class="text-right">TOTAL</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let room of info">
+                            <td>{{room.spendingPlace}}</td>
+                            <td>
+                               {{room.item}}
+                            </td>
+                            <td>
+                                {{room.quantity}}
+                            </td>
+                            <td>
+                               {{info.currency}} {{room.unitPrice}}
+                            </td>
+                            <td></td>
+                            <td style="text-align: end">
+                               {{info.currency}} {{room.amount}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="simple invoice-table-footer">
+                    <tbody>
+                        <tr class="subtotal">
+                            <td></td>
+                            <td>SUBTOTAL</td>
+                            <td>{{info.currency}} {{spend.subTotal}}</td>
+                        </tr>
+                        <tr class="tax" *ngFor="let tax of tax">
+                            <td></td>
+                            <td>{{tax.name}}</td>
+                            <td>{{tax.percentage}}% &nbsp; &nbsp;&nbsp;&nbsp;{{info.currency}} {{tax.amount}}</td>
+                        </tr>
+                        <tr class="discount">
+                            <td></td>
+                            <td>DISCOUNT</td>
+                            <td></td>
+                        </tr>
+                        <!-- <tr class="total">
+                            <td></td>
+                            <td>PAYMENT OPTION</td>
+                            <td>{{info.paymentType}}</td>
+                        </tr>
+                        <tr class="total">
+                            <td></td>
+                            <td>PAYMENT METHOD</td>
+                            <td>{{info.paymentOption}}</td>
+                        </tr> -->
+                         <tr class="total">
+                             <td></td>
+                             <td>DEBIT</td>
+                             <td>{{info.currency}} {{info.debit}}</td>
+                         </tr>
+                         <tr class="total">
+                             <td></td>
+                             <td>CREDIT</td>
+                             <td>{{info.currency}} {{info.credit}}</td>
+                         </tr>
+                        <tr class="total">
+                            <td></td>
+                            <td>Total</td>
+                            <td>{{info.currency}} {{spend.total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+                <div class="note"></div>
+                <div fxLayout="row" fxLayoutAlign="start start">
+                    <div class="logo">
+                        <img [src]="hotel.logo">
+                    </div>
+                    <div class="small-note">
+                       We hope you enjoyed yoour stay here, come again soon. &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+
+          
+
+        </div>
+
+    </div>
+
+</div>

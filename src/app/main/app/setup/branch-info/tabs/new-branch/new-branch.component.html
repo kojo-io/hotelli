@@ -1,0 +1,55 @@
+<form name="branchForm" [formGroup]="branchForm" novalidate fusePerfectScrollbar>
+    <br />
+    <div
+        class="container"
+        fxLayout="row"
+        fxLayoutWrap
+        fxLayoutAlign="center start"
+    >
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text" />
+                <mat-error>
+                    Please enter a branch name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address"></textarea>
+                <mat-error>
+                    Please enter an address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact</mat-label>
+                <input matInput formControlName="contact" type="text" />
+                <mat-error>
+                    Please enter a phone number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="text" />
+                <mat-error *ngIf="branchForm.get('email').hasError('required')">
+                    Email is required
+                </mat-error>
+                <mat-error *ngIf="branchForm.get('email').hasError('email')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            <mat-checkbox formControlName="isActive" [labelPosition]="'before'"
+                >Is Active</mat-checkbox
+            >
+            <br />
+            <button
+                mat-raised-button
+                color="accent"
+                [disabled]="branchForm.invalid"
+                (click)="save()"
+            >
+                Save
+            </button>
+        </div>
+    </div>
+</form>

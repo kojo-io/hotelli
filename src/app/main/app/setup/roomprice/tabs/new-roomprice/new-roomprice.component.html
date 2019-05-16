@@ -1,0 +1,47 @@
+<form name="branchForm" [formGroup]="roomPriceForm" novalidate fusePerfectScrollbar>
+    <br />
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start">
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>Room Type</mat-label>
+                <mat-select formControlName="roomTypeId">
+                    <mat-option *ngFor="let item of roomTypes" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Verification is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Currency</mat-label>
+                <mat-select formControlName="currencyId">
+                    <mat-option *ngFor="let item of currency" [value]="item.id">
+                        {{item.name}} {{item.symbol}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Please enter a currency
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price" type="number" />
+                <mat-error>
+                    Please enter an amount
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Discount in percentage</mat-label>
+                <input matInput formControlName="discount" type="number" [value]="0" />
+                <mat-error>
+                    Please enter a discount amount in percentage
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="accent" [disabled]="roomPriceForm.invalid" (click)="save()">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

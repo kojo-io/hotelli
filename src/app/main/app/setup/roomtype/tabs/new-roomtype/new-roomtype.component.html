@@ -1,0 +1,25 @@
+<form name="branchForm" [formGroup]="roomTypeForm" novalidate fusePerfectScrollbar>
+    <br />
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start">
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>Room Type</mat-label>
+                <input matInput formControlName="name" type="text" />
+                <mat-error>
+                    Please enter a name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+                <mat-error>
+                    Please enter a description
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="accent" [disabled]="roomTypeForm.invalid" (click)="save()">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,174 @@
+<div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" style="padding-left:10px">
+    <button mat-fab class="closebutton mat-warn" (click)="closeModal()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div fxLayout="column" fxFlex="50%">
+        <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event.target.value)" type="text" />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxLayout="column" fxFlex="50%">
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
+<div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
+    <table mat-table matSort [dataSource]="datasource" multiTemplateDataRows width="100%">
+        <ng-container matColumnDef="subtable">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let elemant">
+                <button mat-icon-button (click)="toggleRow(elemant)">
+                    <mat-icon aria-label="View" *ngIf="elemant.show" color="warn">remove
+                    </mat-icon>
+                    <mat-icon aria-label="View" *ngIf="!elemant.show" color="accent">add
+                    </mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Book Id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Book Id
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.bookId }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Check IN">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Arrival Date
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.checkInDateTime }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Check OUT">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Check OUT Date
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.checkOutDateTime }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Nights">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Nights
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.nights }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Payment Type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Payment Type
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.paymentType }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Payment Option">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Payment Option
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.paymentOption }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                <button mat-button [matMenuTriggerFor]="notifyMenu" color="accent"
+                    (click)="check(elemant.checkInDateTime,elemant.checkOutDateTime)">
+                    <mat-icon matSuffix>edit</mat-icon> Action
+                </button>
+
+                <mat-menu #notifyMenu="matMenu" [overlapTrigger]="false">
+                    <button mat-menu-item (click)="generateReceipt(elemant.bookId)">
+                        Generate Receipt
+                    </button>
+                    <button mat-menu-item *ngIf="checkOutAllowed">
+                        Check Out
+                    </button>
+                    <button mat-menu-item *ngIf="extendDaysAllowed" (click)="extendDays(elemant)">
+                        Extend Days
+                    </button>
+                    <button mat-menu-item (click)="billingInfo(elemant)">
+                        Billing Info
+                    </button>
+                </mat-menu>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let elemant" [attr.colspan]="displayColumns.length">
+                <div class="child-table-div">
+                    <table mat-table matSort [dataSource]="elemant.room" width="100%">
+                        <ng-container matColumnDef="Number">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Room Number
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.number }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Room Type
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.type }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Price
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.price }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Adults">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                No. Of Adults
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.adult }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Children">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                No. Of Children
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.children }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Description
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+                {{ elemant.description }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+            </th>
+            <td mat-cell *matCellDef="let elemant">
+
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="SubColumns"></tr>
+        <tr mat-row *matRowDef="let row;columns: SubColumns"></tr>
+    </table>
+</div>
+</td>
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true" align="center"></tr>
+<tr mat-row *matRowDef="let row; columns: displayColumns" class="element-row"></tr>
+<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" style="overflow: hidden" align="center"
+    [hidden]="!row.show"></tr>
+</table>
+</div>

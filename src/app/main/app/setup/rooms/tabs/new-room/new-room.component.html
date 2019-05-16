@@ -1,0 +1,80 @@
+<form name="roomForm" [formGroup]="roomForm" novalidate fusePerfectScrollbar style="padding:30px">
+    <br>
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start" style="padding-bottom:10px"
+fxLayoutGap="2%">
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>Room Number</mat-label>
+                <input matInput formControlName="number" type="text" />
+                <mat-error>
+                    Please enter a room number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Room Type</mat-label>
+                <mat-select formControlName="roomTypeId">
+                    <mat-option *ngFor="let item of roomType" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Verification is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Room Status</mat-label>
+                <mat-select formControlName="roomStatus">
+                    <mat-option *ngFor="let item of roomStatus" [value]="item.status">
+                        {{item.status}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Verification is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Floor Number</mat-label>
+                <input matInput formControlName="floor" type="number" />
+                <mat-error>
+                    Please enter a room floor number
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>No. of adults</mat-label>
+                <input matInput formControlName="adult" type="number" />
+                <mat-error>
+                    Please enter adult number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>No. of children</mat-label>
+                <input matInput formControlName="children" type="number" />
+                <mat-error>
+                    Please enter children number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Descritpion</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+            <mat-checkbox formControlName="isActive" [labelPosition]="'before'">Is Active</mat-checkbox>
+        </div>
+    </div>
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start" style="padding-bottom:10px">
+        <div fxLayout="row" fxLayoutWrap fxLayoutAlign="center start" fxLayoutGap="1%">
+            <div class="column" fxFlex="50%">
+                <button mat-raised-button color="accent" [disabled]="roomForm.invalid" (click)="save()" fxFlex="100%">
+                    Save
+                </button>
+            </div>
+            <div class="column" fxFlex="50%">
+                <button mat-raised-button color="primary" [disabled]="roomForm.invalid"
+                    (click)="clearform()" fxFlex="100%">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

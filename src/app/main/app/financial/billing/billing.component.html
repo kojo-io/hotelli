@@ -1,0 +1,139 @@
+<button mat-fab class="closebutton mat-warn" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+</button>
+<div class="h2 mb-24">Billing Info</div>
+<div class="h3 mb-24">{{state}}</div>
+<div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" style="padding-left:10px">
+    <br>
+    <div fxLayout="column" fxFlex="100">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto" fxLayoutGap="10px"
+            [formGroup]="billingForm">
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Payment Type" formControlName="paymentType">
+                    <mat-option *ngFor="let item of paymentFlag" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    payment type is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Payment Method" formControlName="paymentTypeId" (selectionChange)="change()">
+                    <mat-option *ngFor="let item of paytype" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    payment type is required!
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Option" formControlName="paymentOptionId">
+                    <mat-option *ngFor="let item of payoption | filterBy: ['paymentTypeId']: selpaytype"
+                        [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Payment option is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input matInput placeholder="Amount" formControlName="amount" required type="number">
+                <mat-error>
+                    Amount is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto" fxLayoutGap="10px">
+            <button class="mr-8" mat-raised-button type="button" color="accent" [disabled]="billingForm.invalid"
+                (click)="save()">
+                Save
+            </button>
+            <button mat-raised-button type="button" color="accent" (click)="billingForm.reset()"
+                [disabled]="billingForm.invalid">
+                Clear
+            </button>
+        </div>
+    </div>
+</div>
+<div fusePerfectScrollbar>
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" style="padding-left:10px">
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event.target.value)" type="text" />
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
+        <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutGap="0px">
+                <table mat-table matSort [dataSource]="datasource" fxFlex="100">
+
+                    <ng-container matColumnDef="paymentFlag">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Payment Type
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            {{ elemant.paymentType }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Amount
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            {{elemant.currency}} {{ elemant.amount }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="paymentType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Payment Method
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            {{ elemant.paymentMethod }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="paymentOption">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Email
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            {{ elemant.paymentOption }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Date
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            {{ elemant.date }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                        <td mat-cell *matCellDef="let elemant">
+                            <button mat-button color="accent" (click)="getBill(elemant)">
+                                <mat-icon matSuffix>edit</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" align="center"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="element-row"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
