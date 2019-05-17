@@ -66,6 +66,14 @@ export const navigation: FuseNavigation[] = [
                        url: '/app/setup/supplier'
                    },
                    {
+                       id: 'inventory',
+                       title: 'Inventory',
+                       // translate: 'NAV.CALENDAR',
+                       type: 'item',
+                       icon: 'home',
+                       url: '/app/setup/inventory'
+                   },
+                   {
                        id: 'roomsetup',
                        title: 'Room Setups',
                        type: 'collapsable',

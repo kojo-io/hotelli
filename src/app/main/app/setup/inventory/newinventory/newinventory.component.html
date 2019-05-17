@@ -1,0 +1,107 @@
+<form name="supplierForm" [formGroup]="inventoryForm" novalidate fusePerfectScrollbar>
+    <br />
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start" fxLayoutGap="20px">
+        <div fxLayout="column" fxFlex="50">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text" />
+                <mat-error>
+                    Please enter a branch name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+                <mat-error>
+                    Please enter an description
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Quantity</mat-label>
+                <input matInput formControlName="quantity" type="text" />
+                <mat-error>
+                    Please enter quantity
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="itemPrice" type="text" mask="comma_separator.2" />
+                <mat-error>
+                    Please enter price
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Unit Price</mat-label>
+                <input matInput formControlName="unitPrice" mask="comma_separator.2" type="text" />
+                <mat-error>
+                    Please enter unit price
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="50">
+            <mat-form-field appearance="outline">
+                <mat-label>Collection</mat-label>
+                <mat-select formControlName="collectionId">
+                    <mat-option *ngFor="let item of collection" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Verification is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Item Code</mat-label>
+                <input matInput formControlName="itemCode" type="text" />
+                <mat-error>
+                    Please enter item code
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Supplier</mat-label>
+                <mat-select formControlName="supplierId">
+                    <mat-option *ngFor="let item of suppliers" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Please select supplier
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Facility</mat-label>
+                <mat-select formControlName="facilityId">
+                    <mat-option *ngFor="let item of facility" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Please select facility
+                </mat-error>
+            </mat-form-field>
+            <mat-checkbox formControlName="isActive" [labelPosition]="'before'">Is Active</mat-checkbox>
+        </div>
+    </div>
+</form>
+<div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <button mat-raised-button class="save-button mat-accent" [disabled]="inventoryForm.invalid" aria-label="SAVE"
+        (click)="save()">
+        {{btnText}}
+    </button>
+
+    <!-- <button mat-raised-button class="save-button mat-warn" [disabled]="inventoryForm.invalid" aria-label="SAVE"
+         (click)="delete()">
+         DELETE
+     </button> -->
+
+    <button mat-raised-button class="save-button mat-primary" [disabled]="inventoryForm.invalid" aria-label="SAVE"
+        (click)="inventoryForm.reset(); btnText='SAVE'; editstate=false;">
+        CLEAR
+    </button>
+
+    <button mat-raised-button class="save-button mat-danger" aria-label="SAVE" (click)="dialogRef.close()">
+        CLOSE
+    </button>
+
+</div>

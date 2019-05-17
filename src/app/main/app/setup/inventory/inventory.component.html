@@ -1,0 +1,114 @@
+<div id="products" class="page-layout carded fullwidth inner-scroll">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header mat-accent-bg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    account_box
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    INVENTORY
+                </span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-input-wrapper mx-24 m-md-0" fxFlex="1 0 auto" fxLayout="row"
+                fxLayoutAlign="start center">
+                <label for="search" class="mr-8">
+                    <mat-icon class="secondary-text">search</mat-icon>
+                </label>
+                <mat-form-field floatLabel="never" fxFlex="1 0 auto">
+                    <input id="search" matInput #filter placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                </mat-form-field>
+            </div>
+            <!-- / SEARCH -->
+
+            <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="newinventory()">
+                <span>ADD ITEM</span>
+            </button>
+        </div>
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+            <mat-table class="products-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
+                fusePerfectScrollbar>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                    <mat-cell *matCellDef="let sponsortype">
+                        <p class="text-truncate">{{sponsortype.name}}</p>
+                    </mat-cell>
+                </ng-container>
+                 <ng-container matColumnDef="descritpion">
+                     <mat-header-cell *matHeaderCellDef mat-sort-header>Descritpion</mat-header-cell>
+                     <mat-cell *matCellDef="let sponsortype">
+                         <p class="text-truncate">{{sponsortype.descritpion}}</p>
+                     </mat-cell>
+                 </ng-container>
+                <ng-container matColumnDef="quantity">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Quanity</mat-header-cell>
+                    <mat-cell *matCellDef="let sponsortype">
+                        <p class="text-truncate">{{sponsortype.quantity}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="price">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+                    <mat-cell *matCellDef="let sponsortype">
+                        <p class="text-truncate">{{sponsortype.itemPrice}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="unitprice">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Unit Price</mat-header-cell>
+                    <mat-cell *matCellDef="let sponsortype">
+                        <p class="text-truncate">{{sponsortype.unitPrice}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="itemcode">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
+                    <mat-cell *matCellDef="let sponsortype">
+                        <p class="text-truncate">{{sponsortype.itemCode}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="collection">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Collection</mat-header-cell>
+                    <mat-cell *matCellDef="let sponsortype">
+                        <p class="text-truncate">{{sponsortype.collection}}</p>
+                    </mat-cell>
+                </ng-container>
+                 <ng-container matColumnDef="supplier">
+                     <mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</mat-header-cell>
+                     <mat-cell *matCellDef="let sponsortype">
+                         <p class="text-truncate">{{sponsortype.supplier}}</p>
+                     </mat-cell>
+                 </ng-container>
+                  <ng-container matColumnDef="facility">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>Facility</mat-header-cell>
+                      <mat-cell *matCellDef="let sponsortype">
+                          <p class="text-truncate">{{sponsortype.facility}}</p>
+                      </mat-cell>
+                  </ng-container>
+                <ng-container matColumnDef="active">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Active</mat-header-cell>
+                    <mat-cell *matCellDef="let sponsortype">
+                        <mat-checkbox [disabled]="true" [checked]="sponsortype.isActive"></mat-checkbox>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let sponsortype; columns: displayedColumns;" class="product" matRipple
+                    (click)="edit(sponsortype)">
+                </mat-row>
+            </mat-table>
+            <mat-paginator #paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+        </div>
+    </div>

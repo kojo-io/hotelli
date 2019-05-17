@@ -50,6 +50,9 @@ import { FacilityComponent } from './facility/facility.component';
 import { FacilityTypeComponent } from './facility-type/facility-type.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { NewsupplierComponent } from './supplier/newsupplier/newsupplier.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { NewinventoryComponent } from './inventory/newinventory/newinventory.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 const routes: Routes = [
     {
@@ -98,6 +101,10 @@ const routes: Routes = [
             {
                 path: 'supplier',
                 component: SupplierComponent
+            },
+            {
+                path: 'inventory',
+                component: InventoryComponent
             }
         ]
     }
@@ -107,6 +114,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        NgxMaskModule.forRoot(),
         HttpClientModule,
         MatDialogModule,
         MatTooltipModule,
@@ -141,7 +149,7 @@ const routes: Routes = [
         FuseSharedModule,
         MatRippleModule
     ],
-    entryComponents: [RoomamenityComponent, NewsupplierComponent],
+    entryComponents: [RoomamenityComponent, NewsupplierComponent, NewinventoryComponent],
     declarations: [
         SetupComponent,
         BranchInfoComponent,
@@ -165,7 +173,9 @@ const routes: Routes = [
         FacilityComponent,
         FacilityTypeComponent,
         SupplierComponent,
-        NewsupplierComponent
+        NewsupplierComponent,
+        InventoryComponent,
+        NewinventoryComponent
     ]
 })
 export class SetupModule {}

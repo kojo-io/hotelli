@@ -60,6 +60,7 @@
     "ngx-cookie-service": "1.0.10",
     "ngx-country-select": "2.0.6",
     "ngx-datatable": "1.0.3",
+    "ngx-mask": "7.9.9",
     "ngx-moment": "3.3.0",
     "ngx-pipes": "2.3.10",
     "perfect-scrollbar": "1.4.0",
