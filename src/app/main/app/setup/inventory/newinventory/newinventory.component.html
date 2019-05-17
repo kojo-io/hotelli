@@ -51,13 +51,6 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Item Code</mat-label>
-                <input matInput formControlName="itemCode" type="text" />
-                <mat-error>
-                    Please enter item code
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
                 <mat-label>Supplier</mat-label>
                 <mat-select formControlName="supplierId">
                     <mat-option *ngFor="let item of suppliers" [value]="item.id">

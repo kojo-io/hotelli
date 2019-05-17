@@ -23,6 +23,17 @@
             <!-- SEARCH -->
             <div class="search-input-wrapper mx-24 m-md-0" fxFlex="1 0 auto" fxLayout="row"
                 fxLayoutAlign="start center">
+                 <mat-form-field floatLabel="never" fxFlex="1 0 auto">
+                     <mat-label>Facility</mat-label>
+                     <mat-select formControlName="facilityId" (selectionChange)="getByFacilty($event.value)">
+                         <mat-option *ngFor="let item of facility" [value]="item.id">
+                             {{item.name}}
+                         </mat-option>
+                     </mat-select>
+                     <mat-error>
+                         Please select facility
+                     </mat-error>
+                 </mat-form-field>
                 <label for="search" class="mr-8">
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
@@ -45,39 +56,39 @@
                 <ng-container matColumnDef="name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
                     <mat-cell *matCellDef="let sponsortype">
-                        <p class="text-truncate">{{sponsortype.name}}</p>
+                        <p class="text-truncate">{{sponsortype.u.name}}</p>
                     </mat-cell>
                 </ng-container>
                  <ng-container matColumnDef="descritpion">
                      <mat-header-cell *matHeaderCellDef mat-sort-header>Descritpion</mat-header-cell>
                      <mat-cell *matCellDef="let sponsortype">
-                         <p class="text-truncate">{{sponsortype.descritpion}}</p>
+                         <p class="text-truncate">{{sponsortype.u.descritpion}}</p>
                      </mat-cell>
                  </ng-container>
                 <ng-container matColumnDef="quantity">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Quanity</mat-header-cell>
                     <mat-cell *matCellDef="let sponsortype">
-                        <p class="text-truncate">{{sponsortype.quantity}}</p>
+                        <p class="text-truncate">{{sponsortype.u.quantity}}</p>
                     </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="price">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
                     <mat-cell *matCellDef="let sponsortype">
-                        <p class="text-truncate">{{sponsortype.itemPrice}}</p>
+                        <p class="text-truncate">{{sponsortype.u.itemPrice}}</p>
                     </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="unitprice">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Unit Price</mat-header-cell>
                     <mat-cell *matCellDef="let sponsortype">
-                        <p class="text-truncate">{{sponsortype.unitPrice}}</p>
+                        <p class="text-truncate">{{sponsortype.u.unitPrice}}</p>
                     </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="itemcode">
+                <!-- <ng-container matColumnDef="itemcode">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
                     <mat-cell *matCellDef="let sponsortype">
-                        <p class="text-truncate">{{sponsortype.itemCode}}</p>
+                        <p class="text-truncate">{{sponsortype.u.itemCode}}</p>
                     </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 <ng-container matColumnDef="collection">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Collection</mat-header-cell>
                     <mat-cell *matCellDef="let sponsortype">
@@ -99,7 +110,7 @@
                 <ng-container matColumnDef="active">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Active</mat-header-cell>
                     <mat-cell *matCellDef="let sponsortype">
-                        <mat-checkbox [disabled]="true" [checked]="sponsortype.isActive"></mat-checkbox>
+                        <mat-checkbox [disabled]="true" [checked]="sponsortype.u.isActive"></mat-checkbox>
                     </mat-cell>
                 </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>

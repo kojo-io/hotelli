@@ -42,7 +42,6 @@ export class NewinventoryComponent implements OnInit {
             itemPrice: ['', Validators.required],
             unitPrice: ['', Validators.required],
             collectionId: ['', Validators.required],
-            itemCode: [''],
             supplierId: ['', Validators.required],
             facilityId: ['', Validators.required],
             isActive: [true]
@@ -53,18 +52,17 @@ export class NewinventoryComponent implements OnInit {
         if (this.data) {
             this.btnText = 'EDIT';
             this.editstate = true;
-            this.id = this.data.id;
+            this.id = this.data.u.id;
             this.inventoryForm.patchValue({
-                name: this.data.name,
-                description: this.data.description,
-                quantity: this.data.quantity,
-                itemPrice: this.data.itemPrice,
-                unitPrice: this.data.unitPrice,
-                collectionId: this.data.collectionId,
-                itemCode: this.data.itemCode,
-                supplierId: this.data.supplierId,
-                facilityId: this.data.facilityId,
-                isActive: this.data.isActive
+                name: this.data.u.name,
+                description: this.data.u.description,
+                quantity: this.data.u.quantity,
+                itemPrice: this.data.u.itemPrice,
+                unitPrice: this.data.u.unitPrice,
+                collectionId: this.data.u.collectionId,
+                supplierId: this.data.u.supplierId,
+                facilityId: this.data.u.facilityId,
+                isActive: this.data.u.isActive
             });
         }
     }

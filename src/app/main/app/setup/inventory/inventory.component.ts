@@ -3,6 +3,7 @@ import { NewinventoryComponent } from './newinventory/newinventory.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
+import { FacilityService } from '../facility/facility.service';
 
 @Component({
     selector: 'app-inventory',
@@ -12,9 +13,12 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class InventoryComponent implements OnInit {
 
-    displayedColumns = ['name', 'descritpion', 'quantity', 'price', 'unitprice', 'collection', 'itemcode', 'supplier', 'facility', 'active'];
+    displayedColumns = ['name', 'descritpion', 'quantity', 'price', 'unitprice', 'collection', 'supplier', 'facility', 'active'];
     dataSource = new MatTableDataSource<any>();
     dialogRef: any;
+    facility: any;
+    inventory: any;
+    filterValue = [];
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
@@ -23,18 +27,40 @@ export class InventoryComponent implements OnInit {
 
     constructor(
         private _matDialog: MatDialog,
-        private _inventoryService: InventoryService
+        private _inventoryService: InventoryService,
+        private _facilityService: FacilityService
     ) { }
 
     ngOnInit(): void {
         this.getInvent();
+        this.getFacili();
+    }
+
+    getFacili(): void {
+        this._facilityService.getFacilties().subscribe(
+            result => {
+                this.facility = result;
+            }
+        );
+    }
+
+    getByFacilty(id): void{
+        this.filterValue = [];
+        this.inventory.forEach(element => {
+            if (element.u.facilityId === id){
+                this.filterValue.push(element);
+            }
+        });
+        this.dataSource = new MatTableDataSource<any>(this.filterValue);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 
     getInvent(): void {
         this._inventoryService.getInventory().subscribe(
             result => {
-                console.log(result);
-                this.dataSource = new MatTableDataSource<any>(result);
+                this.inventory = result;
+                this.dataSource = new MatTableDataSource<any>(this.inventory);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
             }
