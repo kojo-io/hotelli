@@ -1,3 +1,4 @@
+import { DialogComponent } from './../dialog/dialog.component';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ExtenddaysComponent } from '../extenddays/extenddays.component';
 import { MatTableDataSource, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatPaginator, MatSort } from '@angular/material';
@@ -150,18 +151,24 @@ export class CheckinsComponent implements OnInit {
     }
 
     extendDays(data): any {
-        this.dialogRef.close();
         this.modal.open(ExtenddaysComponent, {
             width: '50vw',
             data: data
         });
     }
 
+    // CheckOut
+
     billingInfo(data): any {
-        this.dialogRef.close();
         this.modal.open(BillingComponent, {
             width: '100vw',
             data: data
+        });
+    }
+
+    checkOut(data): any {
+        this.modal.open(DialogComponent, {
+            data: {message: 'Are you sure you want to check out user ?', data: data}
         });
     }
 }

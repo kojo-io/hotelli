@@ -40,6 +40,7 @@ import { NewguestComponent } from './list-bookings/tabs/newguest/newguest.compon
 import { ReservationsComponent } from './reservations/reservations.component';
 import { ExtenddaysComponent } from './extenddays/extenddays.component';
 import { CheckinsComponent } from './checkins/checkins.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
     {
@@ -114,8 +115,9 @@ const routes: Routes = [
         ReservationsComponent,
         ExtenddaysComponent,
         CheckinsComponent,
-        BillingComponent
+        BillingComponent,
+        DialogComponent
     ],
-    entryComponents: [ReservationsComponent, ExtenddaysComponent, CheckinsComponent, BillingComponent]
+    entryComponents: [ReservationsComponent, ExtenddaysComponent, CheckinsComponent, BillingComponent, DialogComponent]
 })
 export class BookingsModule {}

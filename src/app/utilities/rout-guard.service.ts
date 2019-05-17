@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { BaseService } from './base.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,19 @@ export class RouteGuard implements CanActivate {
         private httpClient: HttpClient
     ) { }
 
-    canActivate(): boolean {
+    canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+        return new Promise((resolve, reject) => {
+            if (this._baseService.isSessionExpired()) {
+                resolve(true);
+            } else {
+                this._route.navigate(['/login']);
+                resolve(false);
+            }
+        });
+
+    }
+
+    ncanActivate(): boolean {
         // return this._baseService.isSessionExpired();
         if (this._baseService.isSessionExpired()) {
             // this.checkBranch().subscribe(

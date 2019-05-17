@@ -22,7 +22,8 @@ import {
     MatTableModule,
     MatMenu,
     MatMenuModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatRippleModule
 } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -48,6 +49,7 @@ import { TaxsetupComponent } from './taxsetup/taxsetup.component';
 import { FacilityComponent } from './facility/facility.component';
 import { FacilityTypeComponent } from './facility-type/facility-type.component';
 import { SupplierComponent } from './supplier/supplier.component';
+import { NewsupplierComponent } from './supplier/newsupplier/newsupplier.component';
 
 const routes: Routes = [
     {
@@ -64,8 +66,7 @@ const routes: Routes = [
             {
                 path: 'roomtype',
                 component: RoomtypeComponent
-            }
-            ,
+            },
             {
                 path: 'roomprice',
                 component: RoompriceComponent
@@ -89,11 +90,14 @@ const routes: Routes = [
             {
                 path: 'facilityType',
                 component: FacilityTypeComponent
-            }
-            ,
+            },
             {
                 path: 'facility',
                 component: FacilityComponent
+            },
+            {
+                path: 'supplier',
+                component: SupplierComponent
             }
         ]
     }
@@ -134,9 +138,10 @@ const routes: Routes = [
         MatTableModule,
         MatSortModule,
         MatMenuModule,
-        FuseSharedModule
+        FuseSharedModule,
+        MatRippleModule
     ],
-    entryComponents: [RoomamenityComponent],
+    entryComponents: [RoomamenityComponent, NewsupplierComponent],
     declarations: [
         SetupComponent,
         BranchInfoComponent,
@@ -159,7 +164,8 @@ const routes: Routes = [
         TaxsetupComponent,
         FacilityComponent,
         FacilityTypeComponent,
-        SupplierComponent
+        SupplierComponent,
+        NewsupplierComponent
     ]
 })
 export class SetupModule {}

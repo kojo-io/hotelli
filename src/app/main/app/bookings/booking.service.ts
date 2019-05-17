@@ -170,4 +170,9 @@ export class BookingService {
         return this.httpClient.put(
             this.baseService.getBaseUrl() + '/BookingsPayments/' + info.id, info);
     }
+
+    checkOutUser(info): any {
+        return this.httpClient.post(
+            this.baseService.getBaseUrl() + 'Bookings/CheckOut/' + info, null);
+    }
 }

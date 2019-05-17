@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-// tslint:disable-next-line:max-line-length
 import { FuseSharedModule } from '@fuse/shared.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import {
     MatDialogModule,
@@ -25,7 +25,8 @@ import {
     MatTableModule,
     MatDatepickerModule,
     MatMenuModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDividerModule
 } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -35,6 +36,7 @@ import { NgArrayPipesModule } from 'ngx-pipes';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { FinancialComponent } from './financial/financial.component';
+import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 
 const routes: Routes = [
     {
@@ -113,6 +115,10 @@ const routes: Routes = [
         MatStepperModule,
         NgArrayPipesModule,
         RouterModule.forChild(routes),
+        FuseSidebarModule,
+        FuseWidgetModule,
+        MatDividerModule,
+        NgxChartsModule,
 
     ],
     declarations: [DashboardComponent, AppComponent, InvoiceComponent, ReceiptComponent, FinancialComponent]
