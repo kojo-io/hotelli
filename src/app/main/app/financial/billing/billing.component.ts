@@ -20,7 +20,7 @@ export class BillingComponent implements OnInit {
     state: any;
     editstate: Boolean = false;
     bill: any;
-    displayedColumns: string[] = [
+    displayedColumns = [
         'paymentFlag',
         'amount',
         'paymentType',
@@ -29,7 +29,7 @@ export class BillingComponent implements OnInit {
         'Action'
     ];
 
-    paymentFlag: string[] = [
+    paymentFlag = [
         'Payment',
         'Refund'
     ];
@@ -92,7 +92,6 @@ export class BillingComponent implements OnInit {
 
 
     Payments(id): void {
-        
         this._bookService.getPayments(id).subscribe(result => {
             console.log(result.data);
             this.payments = result.data;

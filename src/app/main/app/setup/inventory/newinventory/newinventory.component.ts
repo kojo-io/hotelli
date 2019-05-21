@@ -19,6 +19,7 @@ export class NewinventoryComponent implements OnInit {
     facility: any;
     id: any;
     btnText: any;
+    date: any;
     constructor(
         private formBuilder: FormBuilder,
         private snackBar: MatSnackBar,
@@ -53,6 +54,7 @@ export class NewinventoryComponent implements OnInit {
             this.btnText = 'EDIT';
             this.editstate = true;
             this.id = this.data.u.id;
+            this.date = this.data.u.created;
             this.inventoryForm.patchValue({
                 name: this.data.u.name,
                 description: this.data.u.description,
@@ -160,6 +162,7 @@ export class NewinventoryComponent implements OnInit {
     edit(): void {
         this.data = this.inventoryForm.value;
         this.data.id = this.id;
+        this.data.created = this.date;
         this._inventoryService.putInventory(this.data).subscribe(
             result => {
                 if (result.status === 'Success') {

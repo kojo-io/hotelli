@@ -53,6 +53,7 @@ import { NewsupplierComponent } from './supplier/newsupplier/newsupplier.compone
 import { InventoryComponent } from './inventory/inventory.component';
 import { NewinventoryComponent } from './inventory/newinventory/newinventory.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { InventoryadjustComponent } from './inventoryadjust/inventoryadjust.component';
 
 const routes: Routes = [
     {
@@ -149,7 +150,7 @@ const routes: Routes = [
         FuseSharedModule,
         MatRippleModule
     ],
-    entryComponents: [RoomamenityComponent, NewsupplierComponent, NewinventoryComponent],
+    entryComponents: [RoomamenityComponent, NewsupplierComponent, NewinventoryComponent, InventoryadjustComponent],
     declarations: [
         SetupComponent,
         BranchInfoComponent,
@@ -175,7 +176,8 @@ const routes: Routes = [
         SupplierComponent,
         NewsupplierComponent,
         InventoryComponent,
-        NewinventoryComponent
+        NewinventoryComponent,
+        InventoryadjustComponent
     ]
 })
 export class SetupModule {}

@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { FacilityService } from '../facility/facility.service';
+import { InventoryadjustComponent } from '../inventoryadjust/inventoryadjust.component';
 
 @Component({
     selector: 'app-inventory',
@@ -13,7 +14,7 @@ import { FacilityService } from '../facility/facility.service';
 })
 export class InventoryComponent implements OnInit {
 
-    displayedColumns = ['name', 'descritpion', 'quantity', 'price', 'unitprice', 'collection', 'supplier', 'facility', 'active'];
+    displayedColumns = ['name', 'descritpion', 'quantity', 'price', 'unitprice', 'collection', 'supplier', 'facility', 'active', 'action'];
     dataSource = new MatTableDataSource<any>();
     dialogRef: any;
     facility: any;
@@ -88,6 +89,13 @@ export class InventoryComponent implements OnInit {
                 this.getInvent();
             }
         );
+    }
+
+    istockAdjust(data): any {
+        this.dialogRef = this._matDialog.open(InventoryadjustComponent, {
+            width: '1000px',
+            data: data
+        });
     }
 
     newinventory(): void {

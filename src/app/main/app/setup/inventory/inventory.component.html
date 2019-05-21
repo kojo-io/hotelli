@@ -25,7 +25,7 @@
                 fxLayoutAlign="start center">
                  <mat-form-field floatLabel="never" fxFlex="1 0 auto">
                      <mat-label>Facility</mat-label>
-                     <mat-select formControlName="facilityId" (selectionChange)="getByFacilty($event.value)">
+                     <mat-select (selectionChange)="getByFacilty($event.value)">
                          <mat-option *ngFor="let item of facility" [value]="item.id">
                              {{item.name}}
                          </mat-option>
@@ -113,6 +113,23 @@
                         <mat-checkbox [disabled]="true" [checked]="sponsortype.u.isActive"></mat-checkbox>
                     </mat-cell>
                 </ng-container>
+                  <ng-container matColumnDef="action">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                      <mat-cell *matCellDef="let sponsortype">
+                         <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                             (click)="$event.stopPropagation()">
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             <mat-icon class="secondary-text">menu</mat-icon>
+                             &nbsp;&nbsp;
+                             <span>Menu</span>
+                         </button>
+                         <mat-menu #moreMenu="matMenu">
+                             <button mat-menu-item aria-label="toggle done" (click)="istockAdjust(sponsortype.u)">
+                                 <span>Item Stock Adjustment</span>
+                             </button>
+                         </mat-menu>
+                      </mat-cell>
+                  </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
 
                 <mat-row *matRowDef="let sponsortype; columns: displayedColumns;" class="product" matRipple

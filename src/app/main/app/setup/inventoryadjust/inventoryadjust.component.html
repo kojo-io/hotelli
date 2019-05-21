@@ -1,0 +1,80 @@
+<div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" style="padding-left:10px">
+    <br>
+    <div fxLayout="column" fxFlex="100">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto" fxLayoutGap="10px"
+            [formGroup]="adjustmentForm">
+            <mat-form-field fxFlex="50" appearance="outline">
+                <input matInput placeholder="New Quantity" formControlName="newQuantity" required type="text">
+                <mat-error>
+                    New Quantity is required!
+                </mat-error>
+            </mat-form-field>
+             <mat-form-field fxFlex="50" appearance="outline">
+                 <input matInput placeholder="Reason" formControlName="reason" required type="text">
+                 <mat-error>
+                     Reason is required!
+                 </mat-error>
+             </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto" fxLayoutGap="10px">
+            <button class="mr-8" mat-raised-button type="button" color="accent" [disabled]="adjustmentForm.invalid"
+                (click)="save()"
+               >
+                Save
+            </button>
+            <button mat-raised-button type="button" color="accent" (click)="adjustmentForm.reset()"
+                [disabled]="adjustmentForm.invalid">
+                Clear
+            </button>
+        </div>
+    </div>
+</div>
+<div fusePerfectScrollbar>
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" style="padding-left:10px">
+        <div fxLayout="column" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event.target.value)" type="text" />
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
+        <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutGap="0px">
+                <table mat-table matSort [dataSource]="datasource" fxFlex="100">
+                    <ng-container matColumnDef="NewQuantity">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            New Quantity
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                           {{ elemant.NewQuantity }}
+                        </td>
+                    </ng-container>
+                     <ng-container matColumnDef="PreviousQuantity">
+                         <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                             Previous Quantity
+                         </th>
+                         <td mat-cell *matCellDef="let elemant">
+                             {{ elemant.PreviousQuantity }}
+                         </td>
+                     </ng-container>
+                      <ng-container matColumnDef="Reason">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                              Reason
+                          </th>
+                          <td mat-cell *matCellDef="let elemant">
+                              {{ elemant.Reason }}
+                          </td>
+                      </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" align="center"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="element-row"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
