@@ -88,8 +88,11 @@
                     <button mat-menu-item (click)="generateReceipt(elemant.bookId)">
                         Generate Receipt
                     </button>
-                    <button mat-menu-item *ngIf="checkOutAllowed">
-                        Check Out
+                    <button mat-menu-item (click)="FreeCancellation(elemant.bookId)">
+                        Free Cancellation
+                    </button>
+                    <button mat-menu-item (click)="PaidCancellation(elemant.bookId)">
+                        Paid Cancellation
                     </button>
                     <button mat-menu-item *ngIf="extendDaysAllowed" (click)="extendDays(elemant)">
                         Extend Days

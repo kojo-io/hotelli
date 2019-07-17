@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register.component';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatProgressBarModule, MatSelectModule } from '@angular/material';
-import { FuseSharedModule } from '@fuse/shared.module';
 
 
 const routes = [

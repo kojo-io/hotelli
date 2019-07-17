@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoomtypeComponent } from './roomtype.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from 'q';
 
 describe('RoomtypeComponent', () => {
   let component: RoomtypeComponent;

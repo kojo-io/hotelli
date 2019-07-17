@@ -1,16 +1,16 @@
-import { BranchInfoService } from './../../../main/app/setup/branch-info/branch-info.service';
-import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
-import * as _ from 'lodash';
+import { BranchInfoService } from '../../../main/app/setup/branch-info/branch-info.service';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 import { BaseService } from 'app/utilities/base.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
     selector   : 'toolbar',

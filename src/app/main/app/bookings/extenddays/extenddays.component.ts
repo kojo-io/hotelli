@@ -1,10 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { BookingService } from '../booking.service';
 import { BaseService } from 'app/utilities/base.service';
-import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-extenddays',
@@ -140,6 +140,8 @@ export class ExtenddaysComponent implements OnInit {
                 });
             }
         );
+
+        this.dialogRef.close();
     }
 
 }

@@ -1,34 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgxMaskModule } from 'ngx-mask';
 import { SetupComponent } from './setup.component';
 import { BranchInfoComponent } from './branch-info/branch-info.component';
-import { HttpClientModule } from '@angular/common/http';
-import {
-    MatDialogModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatTabsModule,
-    MatBadgeModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatMenu,
-    MatMenuModule,
-    MatDatepickerModule,
-    MatRippleModule
-} from '@angular/material';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { RouterModule, Routes } from '@angular/router';
 import { ListbranchComponent } from './branch-info/tabs/listbranch/listbranch.component';
 import { NewBranchComponent } from './branch-info/tabs/new-branch/new-branch.component';
 import { RoomtypeComponent } from './roomtype/roomtype.component';
@@ -52,8 +25,18 @@ import { SupplierComponent } from './supplier/supplier.component';
 import { NewsupplierComponent } from './supplier/newsupplier/newsupplier.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { NewinventoryComponent } from './inventory/newinventory/newinventory.component';
-import { NgxMaskModule } from 'ngx-mask';
 import { InventoryadjustComponent } from './inventoryadjust/inventoryadjust.component';
+import { UseraccountComponent } from './useraccount/useraccount.component';
+import { NewuserComponent } from './useraccount/newuser/newuser.component';
+import { FacilityitemsComponent } from './facility/facilityitems/facilityitems.component';
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+// tslint:disable-next-line: max-line-length
+import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatCardModule, MatSelectModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatIconModule, MatTabsModule, MatBadgeModule, MatCheckboxModule, MatDatepickerModule, MatButtonModule, MatProgressSpinnerModule, MatTableModule, MatMenuModule, MatRippleModule } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 const routes: Routes = [
     {
@@ -76,7 +59,7 @@ const routes: Routes = [
                 component: RoompriceComponent
             },
             {
-                path: 'amenities',
+                path: 'room_facilities',
                 component: AmenitiesComponent
             },
             {
@@ -106,6 +89,10 @@ const routes: Routes = [
             {
                 path: 'inventory',
                 component: InventoryComponent
+            },
+            {
+                path: 'employees',
+                component: UseraccountComponent
             }
         ]
     }
@@ -150,7 +137,7 @@ const routes: Routes = [
         FuseSharedModule,
         MatRippleModule
     ],
-    entryComponents: [RoomamenityComponent, NewsupplierComponent, NewinventoryComponent, InventoryadjustComponent],
+    entryComponents: [RoomamenityComponent, NewsupplierComponent, NewinventoryComponent, InventoryadjustComponent, NewuserComponent],
     declarations: [
         SetupComponent,
         BranchInfoComponent,
@@ -177,7 +164,10 @@ const routes: Routes = [
         NewsupplierComponent,
         InventoryComponent,
         NewinventoryComponent,
-        InventoryadjustComponent
+        InventoryadjustComponent,
+        UseraccountComponent,
+        NewuserComponent,
+        FacilityitemsComponent
     ]
 })
 export class SetupModule {}

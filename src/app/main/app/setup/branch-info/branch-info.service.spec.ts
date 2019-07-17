@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
 
 import { BranchInfoService } from './branch-info.service';
+import { TestBed, inject } from '@angular/core/testing';
 
 describe('BranchInfoService', () => {
   beforeEach(() => {

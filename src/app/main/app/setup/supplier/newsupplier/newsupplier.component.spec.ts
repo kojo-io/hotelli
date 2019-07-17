@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NewsupplierComponent } from './newsupplier.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from 'q';
 
 describe('NewsupplierComponent', () => {
   let component: NewsupplierComponent;

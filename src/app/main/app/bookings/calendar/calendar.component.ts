@@ -1,16 +1,18 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { CalendarEventAction, CalendarEventTimesChangedEvent, CalendarMonthViewDay } from 'angular-calendar';
-import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { CalendarEventAction, CalendarEvent, CalendarMonthViewDay, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
-import { CalendarEvent } from 'calendar-utils';
-import { Subject } from 'rxjs';
-import { FormBuilder } from '@angular/forms';
 import { BookingService } from '../booking.service';
 import { RoomService } from '../../setup/rooms/room.service';
 import { BaseService } from 'app/utilities/base.service';
-import { Router } from '@angular/router';
 import { startOfDay, isSameMonth, isSameDay } from 'date-fns';
 import { fuseAnimations } from '@fuse/animations';
+import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { navigation } from 'app/navigation/navigation';
+import { receptionNav } from 'app/navigation/receptionnav';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-calendar',
@@ -29,15 +31,35 @@ export class CalendarComponent implements OnInit {
     selectedDay: any;
     view: string;
     viewDate: Date;
-
+    navigation: any;
     message: any;
     constructor(
         private _bookService: BookingService,
         public modal: MatDialog,
         private _baseService: BaseService,
         private _router: Router,
-        public snackBar: MatSnackBar
+        public snackBar: MatSnackBar,
+        private _fuseNavigationService: FuseNavigationService,
+        private _fuseSidebarService: FuseSidebarService,
     ) {
+        //  Get default navigation
+        if (this._baseService.getUserData().role === 'Administrator') {
+            this.navigation = navigation;
+        }
+
+        if (this._baseService.getUserData().role === 'Receptionist') {
+            this.navigation = receptionNav;
+        }
+        // Set default navigation
+
+        // Unregister navigation
+        this._fuseNavigationService.unregister('setups');
+
+        // Register the navigation to the service
+        this._fuseNavigationService.register('setups', this.navigation);
+
+        // Set the main navigation as our current navigation
+        this._fuseNavigationService.setCurrentNavigation('setups');
         // Set the defaults
         this.view = 'month';
         this.viewDate = new Date();
@@ -100,23 +122,23 @@ export class CalendarComponent implements OnInit {
                             location: element.room,
                             notes: element.guest
                         },
-                        actions: [
-                            {
-                                label:
-                                    '<i class="material-icons s-16">edit</i>',
-                                onClick: ({
-                                    event
-                                }: {
-                                    event: CalendarEvent;
-                                }): void => {
-                                    this.newMessage(element.id);
-                                    // console.log(
-                                    //     'Edit event',
-                                    //     event
-                                    // );
-                                }
-                            }
-                        ]
+                        // actions: [
+                        //     {
+                        //         label:
+                        //             '<i class="material-icons s-16">edit</i>',
+                        //         onClick: ({
+                        //             event
+                        //         }: {
+                        //             event: CalendarEvent;
+                        //         }): void => {
+                        //             this.newMessage(element.id);
+                        //             // console.log(
+                        //             //     'Edit event',
+                        //             //     event
+                        //             // );
+                        //         }
+                        //     }
+                        // ]
                     });
                 }
             });

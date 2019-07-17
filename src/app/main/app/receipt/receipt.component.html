@@ -124,6 +124,11 @@
                             <td>SUBTOTAL</td>
                             <td>{{info.currency}} {{spend.subTotal}}</td>
                         </tr>
+                        <tr class="subtotal">
+                            <td></td>
+                            <td>PREVIOUS PAYMENT</td>
+                            <td>{{info.currency}} {{spend.previousPayment}}</td>
+                        </tr>
                         <tr class="tax" *ngFor="let tax of tax">
                             <td></td>
                             <td>{{tax.name}}</td>
@@ -170,7 +175,7 @@
                         <img [src]="hotel.logo">
                     </div>
                     <div class="small-note">
-                       We hope you enjoyed yoour stay here, come again soon. &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                       We hope you enjoyed your stay here, come again soon. &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;

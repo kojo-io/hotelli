@@ -23,7 +23,7 @@
             <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
                 <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
                     <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutGap="0px">
-                        <table mat-table matSort [dataSource]="datasource" multiTemplateDataRows fxFlex="100">
+                        <table mat-table matSort [dataSource]="datasource" multiTemplateDataRows fxFlex="100" width="100%">
                             <ng-container matColumnDef="subtable">
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let elemant">
@@ -124,7 +124,7 @@
                                         <table mat-table matSort [dataSource]="elemant.amenity" width="100%">
                                             <ng-container matColumnDef="Amenity">
                                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                                                    Room Amenities
+                                                    Room Facilities
                                                 </th>
                                                 <td mat-cell *matCellDef="let amen">
                                                     {{ amen.description }}
@@ -252,6 +252,7 @@
 
             <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
                 <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+                    <!-- <div class="h3 mb-24">{{state}}</div> -->
                     <div class="h2 mb-24">Guest Info</div>
                     <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutGap="10px">
                         <mat-form-field fxFlex="25">

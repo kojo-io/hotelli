@@ -1,42 +1,29 @@
-import { RouteGuard } from './../../utilities/rout-guard.service';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FuseSharedModule } from '@fuse/shared.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
-import {
-    MatDialogModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatTabsModule,
-    MatBadgeModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatDatepickerModule,
-    MatMenuModule,
-    MatStepperModule,
-    MatDividerModule
-} from '@angular/material';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { NgArrayPipesModule } from 'ngx-pipes';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FuseSharedModule } from '@fuse/shared.module';
+
 import { InvoiceComponent } from './invoice/invoice.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { FinancialComponent } from './financial/financial.component';
-import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
+import { FuseSidebarModule, FuseWidgetModule, FuseProgressBarModule, FuseThemeOptionsModule } from '@fuse/components';
+import { FuseModule } from '@fuse/fuse.module';
+import { fuseConfig } from 'app/fuse-config';
+import { HttpinterceptorService } from 'app/utilities/httpinterceptor.service';
+import { Routes, RouterModule } from '@angular/router';
+import { RouteGuard } from 'app/utilities/rout-guard.service';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// tslint:disable-next-line: max-line-length
+import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatCardModule, MatSelectModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatIconModule, MatTabsModule, MatBadgeModule, MatCheckboxModule, MatDatepickerModule, MatButtonModule, MatProgressSpinnerModule, MatTableModule, MatMenuModule, MatStepperModule, MatDividerModule, MAT_DATE_LOCALE } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { LayoutModule } from '@angular/cdk/layout';
+import { AppsComponent } from './app.component';
+import 'hammerjs';
+
 
 const routes: Routes = [
     {
@@ -78,6 +65,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+    
     imports: [
         CommonModule,
         HttpClientModule,
@@ -115,12 +103,23 @@ const routes: Routes = [
         MatStepperModule,
         NgArrayPipesModule,
         RouterModule.forChild(routes),
-        FuseSidebarModule,
         FuseWidgetModule,
         MatDividerModule,
         NgxChartsModule,
 
+        FuseProgressBarModule,
+        FuseSharedModule,
+        FuseSidebarModule,
+        FuseThemeOptionsModule,
+
+        LayoutModule,
+
+
     ],
-    declarations: [DashboardComponent, AppComponent, InvoiceComponent, ReceiptComponent, FinancialComponent]
+    declarations: [DashboardComponent, InvoiceComponent, ReceiptComponent, FinancialComponent],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+        { provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true },
+    ]
 })
 export class AppModule {}

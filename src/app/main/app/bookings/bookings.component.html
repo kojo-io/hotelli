@@ -30,7 +30,7 @@
                     <mat-icon>wifi</mat-icon>
                 </label>
                 <mat-form-field class="m-0">
-                    <mat-select placeholder="Room amenities" formControlName="amenities" [multiple]="true">
+                    <mat-select placeholder="Room Facilities" formControlName="amenities" [multiple]="true">
                         <mat-option *ngFor="let item of amenities" [value]="item.id">
                             {{item.description}}
                         </mat-option>

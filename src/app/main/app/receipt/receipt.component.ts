@@ -1,7 +1,11 @@
-import { BaseService } from './../../../utilities/base.service';
+import { navigation } from 'app/navigation/navigation';
+import { BookingService } from '../bookings/booking.service';
+import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { receptionNav } from 'app/navigation/receptionnav';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookingService } from '../bookings/booking.service';
+import { BaseService } from 'app/utilities/base.service';
 
 @Component({
     selector: 'app-receipt',
@@ -20,11 +24,33 @@ export class ReceiptComponent implements OnInit, OnDestroy {
     Rid: any;
     rooms = new Array<any>();
     date = new Date().toLocaleDateString();
+    navigation: any;
     constructor(
         private _bookService: BookingService,
         private router: Router,
-        private baseService: BaseService
+        private baseService: BaseService,
+        private _fuseNavigationService: FuseNavigationService,
+        private _fuseSidebarService: FuseSidebarService,
     ) {
+        //  Get default navigation
+        if (this.baseService.getUserData().role === 'Administrator') {
+            this.navigation = navigation;
+        }
+
+        if (this.baseService.getUserData().role === 'Receptionist') {
+            this.navigation = receptionNav;
+        }
+        // Set default navigation
+
+        // Unregister navigation
+        this._fuseNavigationService.unregister('setups');
+
+        // Register the navigation to the service
+        this._fuseNavigationService.register('setups', this.navigation);
+
+        // Set the main navigation as our current navigation
+        this._fuseNavigationService.setCurrentNavigation('setups');
+
         this._bookService.currentRoute.subscribe(
             newroute => (this.route = newroute)
         );
@@ -34,7 +60,7 @@ export class ReceiptComponent implements OnInit, OnDestroy {
         );
         if (this.receipt === '') {
             this.router.navigate(['/app/dashboard']);
-                }
+        }
     }
 
     ngOnInit(): void {
@@ -49,7 +75,7 @@ export class ReceiptComponent implements OnInit, OnDestroy {
                     this.spend = results.data.spending;
                     this.tax = results.data.spending.taxes;
                     // this.rooms = results.rooms;
-                     this.guest = results.data.guest;
+                    this.guest = results.data.guest;
                     // this.info = results.info;
                     this.Rid = results.data.id;
                     // this.info.total = results.totalDue;
@@ -73,7 +99,7 @@ export class ReceiptComponent implements OnInit, OnDestroy {
         // ];
     }
 
-    ngOnDestroy(): void {}
+    ngOnDestroy(): void { }
 
     cal(n, s): any {
         return n * s;

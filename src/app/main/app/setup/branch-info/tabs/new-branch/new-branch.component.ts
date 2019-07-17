@@ -1,7 +1,7 @@
+import { EventEmitter, Component, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { BranchInfoService } from '../../branch-info.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { BranchInfoService } from './../../branch-info.service';
 
 @Component({
     selector: 'app-new-branch',

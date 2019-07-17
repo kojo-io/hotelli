@@ -1,6 +1,6 @@
-import { RoomtypeService } from './../../roomtype.service';
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { RoomtypeService } from '../../roomtype.service';
 
 @Component({
   selector: 'app-list-roomtype',

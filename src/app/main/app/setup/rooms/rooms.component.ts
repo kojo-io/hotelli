@@ -1,7 +1,7 @@
 import { ListRoomsComponent } from './tabs/list-rooms/list-rooms.component';
+import { NewRoomComponent } from './tabs/new-room/new-room.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
-import { NewRoomComponent } from './tabs/new-room/new-room.component';
 
 @Component({
   selector: 'app-rooms',

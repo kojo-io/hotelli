@@ -1,7 +1,7 @@
-import { RoomamenityComponent } from './../modal/roomamenity/roomamenity.component';
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { RoomService } from '../../room.service';
+import { EventEmitter, Component, OnInit, Output, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
+import { RoomamenityComponent } from '../modal/roomamenity/roomamenity.component';
 
 @Component({
   selector: 'app-list-rooms',

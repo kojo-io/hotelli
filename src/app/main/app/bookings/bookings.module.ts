@@ -1,37 +1,7 @@
-import { BillingComponent } from './../financial/billing/billing.component';
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouteGuard } from 'app/utilities/rout-guard.service';
 import { BookComponent } from './book/book.component';
-import { HttpClientModule } from '@angular/common/http';
-import { CalendarModule as AngularCalendarModule } from 'angular-calendar';
-import {
-    MatDialogModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatTabsModule,
-    MatBadgeModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatMenuModule,
-    MatStepperModule
-} from '@angular/material';
 
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { NgArrayPipesModule } from 'ngx-pipes';
 import { BookingsComponent } from './bookings.component';
 import { ListBookingsComponent } from './list-bookings/list-bookings.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -41,6 +11,18 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { ExtenddaysComponent } from './extenddays/extenddays.component';
 import { CheckinsComponent } from './checkins/checkins.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+// tslint:disable-next-line: max-line-length
+import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatCardModule, MatSelectModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatIconModule, MatTabsModule, MatBadgeModule, MatCheckboxModule, MatDatepickerModule, MatButtonModule, MatProgressSpinnerModule, MatTableModule, MatMenuModule, MatStepperModule, MAT_DATE_LOCALE } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { NgArrayPipesModule } from 'ngx-pipes';
+import { BillingComponent } from '../financial/billing/billing.component';
+import { CalendarModule as AngularCalendarModule } from 'angular-calendar';
+
 
 const routes: Routes = [
     {
@@ -118,6 +100,9 @@ const routes: Routes = [
         BillingComponent,
         DialogComponent
     ],
-    entryComponents: [ReservationsComponent, ExtenddaysComponent, CheckinsComponent, BillingComponent, DialogComponent]
+    entryComponents: [ReservationsComponent, ExtenddaysComponent, CheckinsComponent, BillingComponent, DialogComponent],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    ]
 })
 export class BookingsModule {}

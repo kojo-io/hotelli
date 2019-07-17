@@ -1,9 +1,9 @@
-import { RoomtypeService } from './../../../roomtype/roomtype.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { BaseService } from 'app/utilities/base.service';
+import { EventEmitter, Component, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { RoompriceService } from './../../roomprice.service';
-import { BaseService } from 'app/utilities/base.service';
+import { RoompriceService } from '../../roomprice.service';
+import { RoomtypeService } from '../../../roomtype/roomtype.service';
 
 @Component({
   selector: 'app-new-roomprice',

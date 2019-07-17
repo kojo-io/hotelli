@@ -1,19 +1,9 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MomentModule } from 'ngx-moment';
 
 // tslint:disable-next-line:max-line-length
-import {
-    MatButtonModule, MatIconModule, MatDialogModule, MatTooltipModule,
-    MatFormFieldModule, MatInputModule, MatSelectModule, MatSnackBarModule,
-    MatCardModule, MatPaginatorModule, MatSortModule, MatTabsModule,
-    MatBadgeModule, MatCheckboxModule, MatProgressSpinnerModule,
-    MatTableModule,
-    MatDatepickerModule,
-} from '@angular/material';
-import { TranslateModule } from '@ngx-translate/core';
 
 import 'hammerjs';
 
@@ -22,16 +12,22 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 import { fuseConfig } from './fuse-config';
 
-import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HttpinterceptorService } from './utilities/httpinterceptor.service';
-import { MomentModule } from 'ngx-moment';
+import { AppComponent } from './app.component';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// tslint:disable-next-line: max-line-length
+import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatCardModule, MatSelectModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatIconModule, MatTabsModule, MatBadgeModule, MatCheckboxModule, MatDatepickerModule, MatButtonModule, MatProgressSpinnerModule, MatTableModule } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
+import { AppsComponent } from './main/app/app.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        AppsComponent
     ],
     imports: [
         /* Angular modules */

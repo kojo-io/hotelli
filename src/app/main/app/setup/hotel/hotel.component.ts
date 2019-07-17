@@ -1,10 +1,10 @@
-import { RegisterService } from './../../../register/register.service';
+import { BaseService } from 'app/utilities/base.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
-import { BaseService } from 'app/utilities/base.service';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { RegisterService } from 'app/main/register/register.service';
 
 @Component({
     selector: 'app-hotel',
@@ -42,7 +42,9 @@ export class HotelComponent implements OnInit {
             address: [data.address, Validators.required],
             established: [data.established, Validators.required],
             website: [data.website],
-            isActive: [data.isActive]
+            isActive: [data.isActive],
+            preCheckOutFee: [data.preCheckOutFee],
+            invoicePrefix: [data.invoicePrefix]
         });
 
         if (data.logo != null)
@@ -53,16 +55,7 @@ export class HotelComponent implements OnInit {
             this.logo = 'assets/images/hotel.svg';
         }
 
-        // console.log('data =>', this._baseService.getSesstionData());
-        // console.log('form =>', this.registerForm.value);
         this.Country();
-        // this.registerForm.get('contact').valueChanges.pipe(takeUntil(this._unsubscribeAll)).subscribe(value => {
-        //     if (value.length >= 10) {
-        //         console.log('max out');
-        //         value.length.
-        //          this.registerForm.get('contact').setValue(value);
-        //     }
-        // });
     }
 
     onBranchlogoChange(event): void {
@@ -88,6 +81,9 @@ export class HotelComponent implements OnInit {
     }
 
     save(): void{
+        if (isNaN(parseFloat(this.registerForm.get('preCheckOutFee').value))) {
+            this.registerForm.get('preCheckOutFee').setValue(0);
+        }
         const data = this.registerForm.value;
         data.id = this.hotelId;
         data.logo = this.logo;

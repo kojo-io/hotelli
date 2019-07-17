@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { NewsupplierComponent } from './newsupplier/newsupplier.component';
 import { SupplierService } from './supplier.service';
 import { fuseAnimations } from '@fuse/animations';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 
 @Component({
     selector: 'app-supplier',

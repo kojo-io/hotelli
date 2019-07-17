@@ -1,5 +1,5 @@
-import { CalendarEventAction } from 'angular-calendar';
 import { startOfDay, endOfDay } from 'date-fns';
+import { CalendarEventAction } from 'angular-calendar';
 
 export class CalendarEventModel {
     start: Date;

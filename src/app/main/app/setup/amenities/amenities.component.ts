@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { NewAmenityComponent } from './tabs/new-amenity/new-amenity.component';
 import { ListAmenityComponent } from './tabs/list-amenity/list-amenity.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
 
 @Component({

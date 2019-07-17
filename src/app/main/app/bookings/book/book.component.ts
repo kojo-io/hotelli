@@ -1,19 +1,16 @@
-import { Router } from '@angular/router';
-import { BaseService } from './../../../../utilities/base.service';
-import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BookingService } from '../booking.service';
-import {
-    MatPaginator,
-    MatSort,
-    MatTableDataSource,
-    MatDialog,
-    MatSnackBar,
-    MatDialogRef
-} from '@angular/material';
 import { RoomService } from '../../setup/rooms/room.service';
+import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { navigation } from 'app/navigation/navigation';
+import { receptionNav } from 'app/navigation/receptionnav';
+import { Component, ViewEncapsulation, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource, MatDialog, MatSnackBar, MatPaginator, MatSort } from '@angular/material';
+import { BaseService } from 'app/utilities/base.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-book',
@@ -72,6 +69,8 @@ export class BookComponent implements OnInit, OnDestroy {
     hotelInfo: any;
     tdate = new Date();
     message: any;
+    state: any;
+    navigation: any;
     editstate: Boolean = false;
     constructor(
         private _formBuilder: FormBuilder,
@@ -80,8 +79,29 @@ export class BookComponent implements OnInit, OnDestroy {
         public modal: MatDialog,
         private _baseService: BaseService,
         private _router: Router,
-        public snackBar: MatSnackBar
-    ) {}
+        public snackBar: MatSnackBar,
+        private _fuseNavigationService: FuseNavigationService,
+        private _fuseSidebarService: FuseSidebarService,
+    ) {
+        //  Get default navigation
+        if (this._baseService.getUserData().role === 'Administrator') {
+            this.navigation = navigation;
+        }
+
+        if (this._baseService.getUserData().role === 'Receptionist') {
+            this.navigation = receptionNav;
+        }
+        // Set default navigation
+
+        // Unregister navigation
+        this._fuseNavigationService.unregister('setups');
+
+        // Register the navigation to the service
+        this._fuseNavigationService.register('setups', this.navigation);
+
+        // Set the main navigation as our current navigation
+        this._fuseNavigationService.setCurrentNavigation('setups');
+    }
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -121,6 +141,15 @@ export class BookComponent implements OnInit, OnDestroy {
         this.paymentInfo.get('paymentId').valueChanges.subscribe(value => {
             if (value) {
                 this.selpaytype = value;
+            }
+        });
+
+        this.roomForm.get('roomId').valueChanges.subscribe(value => {
+            this.state = null;
+            if (value) {
+                value.forEach(element => {
+                    this.state = this.state + element.price;
+                });
             }
         });
 

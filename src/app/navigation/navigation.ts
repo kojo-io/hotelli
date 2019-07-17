@@ -58,6 +58,14 @@ export const navigation: FuseNavigation[] = [
                        url: '/app/setup/branches'
                    },
                    {
+                       id: 'employee',
+                       title: 'Employee',
+                       // translate: 'NAV.CALENDAR',
+                       type: 'item',
+                       icon: 'account_box',
+                       url: '/app/setup/employees'
+                   },
+                   {
                        id: 'supplier',
                        title: 'Supplier',
                        // translate: 'NAV.CALENDAR',
@@ -93,9 +101,9 @@ export const navigation: FuseNavigation[] = [
                            },
                            {
                                id: 'amenity',
-                               title: 'Amenities',
+                               title: 'Room Facilities',
                                type: 'item',
-                               url: '/app/setup/amenities'
+                               url: '/app/setup/room_facilities'
                            },
                            {
                                id: 'rooms',

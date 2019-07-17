@@ -1,12 +1,12 @@
-import { CheckinsComponent } from './../../../checkins/checkins.component';
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { BookingService } from '../../../booking.service';
 import { RoomService } from 'app/main/app/setup/rooms/room.service';
-import { MatDialog, MatSnackBar, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { BaseService } from 'app/utilities/base.service';
-import { Router } from '@angular/router';
 import { ReservationsComponent } from '../../../reservations/reservations.component';
+import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
+import { MatTableDataSource, MatDialog, MatSnackBar, MatPaginator, MatSort } from '@angular/material';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CheckinsComponent } from '../../../checkins/checkins.component';
 
 @Component({
     selector: 'app-listguest',

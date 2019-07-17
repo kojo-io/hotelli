@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
 
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector     : 'navbar-horizontal-style-1',
@@ -11,6 +11,7 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
     styleUrls    : ['./style-1.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
+
 export class NavbarHorizontalStyle1Component implements OnInit, OnDestroy
 {
     navigation: any;

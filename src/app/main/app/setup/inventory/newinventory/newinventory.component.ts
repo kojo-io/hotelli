@@ -1,9 +1,9 @@
-import { FacilityService } from './../../facility/facility.service';
-import { SupplierService } from './../../supplier/supplier.service';
-import { InventoryService } from './../inventory.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { InventoryService } from '../inventory.service';
+import { SupplierService } from '../../supplier/supplier.service';
+import { FacilityService } from '../../facility/facility.service';
 
 @Component({
     selector: 'app-newinventory',

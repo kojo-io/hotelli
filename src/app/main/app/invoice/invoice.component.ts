@@ -1,6 +1,6 @@
+import { BookingService } from '../bookings/booking.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookingService } from '../bookings/booking.service';
 
 @Component({
     selector: 'app-invoice',

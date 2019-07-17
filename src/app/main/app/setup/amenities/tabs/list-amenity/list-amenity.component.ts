@@ -1,6 +1,6 @@
-import { AmenityService } from './../../amenity.service';
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { EventEmitter, Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { AmenityService } from '../../amenity.service';
 
 @Component({
   selector: 'app-list-amenity',

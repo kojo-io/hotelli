@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RoomService } from '../../room.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
 import { RoomtypeService } from '../../../roomtype/roomtype.service';
 import { RoompriceService } from '../../../roomprice/roomprice.service';
 import { BaseService } from 'app/utilities/base.service';
+import { EventEmitter, Component, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-new-room',

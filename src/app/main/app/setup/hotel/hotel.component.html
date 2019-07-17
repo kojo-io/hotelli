@@ -102,6 +102,15 @@
                         <input type="file" (change)="onBranchlogoChange($event)" #blogo hidden>
                     </div>
                     <mat-checkbox formControlName="isActive" [labelPosition]="'before'">Is Active</mat-checkbox>
+                    <br>
+                     <mat-form-field appearance="outline">
+                         <mat-label>Cancellation Penalty</mat-label>
+                         <input matInput formControlName="preCheckOutFee" type="number" />
+                     </mat-form-field>
+                     <mat-form-field appearance="outline">
+                         <mat-label>Invoice Prefix</mat-label>
+                         <input matInput formControlName="invoicePrefix" type="text" />
+                     </mat-form-field>
                 </div>
             </div>
             <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start" fxLayoutGap="1%" style="padding:20px">

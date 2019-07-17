@@ -1,9 +1,8 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BookingService } from '../../../booking.service';
-import { RoomService } from 'app/main/app/setup/rooms/room.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
 import { BaseService } from 'app/utilities/base.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -35,6 +34,8 @@ export class NewguestComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: ['', Validators.email],
+            address: ['', Validators.required],
+            dOB: ['', Validators.required],
             contact: ['', Validators.required],
             countryId: ['', Validators.required],
             identificationTypeId: ['', Validators.required],
@@ -71,13 +72,15 @@ export class NewguestComponent implements OnInit {
         this.editstate = true;
         this.guestform.reset();
         const user = info;
-
+        console.log(user);
         this.userid = user.id;
 
         this.guestform = this._formBuilder.group({
             firstName: [user.firstName, Validators.required],
             lastName: [user.lastName, Validators.required],
             email: [user.email, Validators.email],
+            address: [user.address, Validators.required],
+            dOB: [user.dob, Validators.required],
             contact: [user.contact, Validators.required],
             countryId: [user.countryId, Validators.required],
             identificationTypeId: [

@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, Output, EventEmitter, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { RoomService } from '../../../room.service';
+import { EventEmitter, Component, OnInit, Output, ViewChild, Inject } from '@angular/core';
+import { MatPaginator, MatSort, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({

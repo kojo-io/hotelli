@@ -1,10 +1,11 @@
-import { BillingComponent } from './../../financial/billing/billing.component';
-import { ExtenddaysComponent } from './../extenddays/extenddays.component';
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatSnackBar, MatTableDataSource, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { BookingService } from '../booking.service';
 import { BaseService } from 'app/utilities/base.service';
+import { DialogComponent } from '../dialog/dialog.component';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatPaginator, MatSort } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ExtenddaysComponent } from '../extenddays/extenddays.component';
+import { BillingComponent } from '../../financial/billing/billing.component';
 @Component({
     selector: 'app-reservations',
     templateUrl: './reservations.component.html',
@@ -83,7 +84,7 @@ export class ReservationsComponent implements OnInit {
 
     generateReceipt(id): void {
         this._bookService.getReceipt(id).subscribe(results => {
-            // console.log(results);
+            console.log(results);
             if (results.status === 'Success') {
                 this._bookService.checkReceipt(id);
                 console.log(this.route);
@@ -96,6 +97,10 @@ export class ReservationsComponent implements OnInit {
                     horizontalPosition: 'center',
                     verticalPosition: 'top'
                 });
+                this._bookService.checkReceipt(id);
+                console.log(this.route);
+                this._bookService.checkRoute(this.route);
+
             }
 
             if (results.status === 'Refund') {
@@ -104,6 +109,10 @@ export class ReservationsComponent implements OnInit {
                     horizontalPosition: 'center',
                     verticalPosition: 'top'
                 });
+                this._bookService.checkReceipt(id);
+                console.log(this.route);
+                this._bookService.checkRoute(this.route);
+
             }
 
             if (results.status === 'Error') {
@@ -114,11 +123,10 @@ export class ReservationsComponent implements OnInit {
                 });
             }
 
-            // this._router.navigate(['/app/receipt']);
             this._router.navigate(['/app/receipt']);
             this.dialogRef.close();
         });
-       
+
     }
 
     check(checkIn, checkOut): any {
@@ -155,6 +163,18 @@ export class ReservationsComponent implements OnInit {
         this.modal.open(BillingComponent, {
             width: '100vw',
             data: data
+        });
+    }
+
+    FreeCancellation(data): any {
+        this.modal.open(DialogComponent, {
+            data: { message: 'Are you sure you want to cancel reservation ?', data: data, inputHidden: true, method: 'FreeCancellation' }
+        });
+    }
+
+    PaidCancellation(data): any {
+        this.modal.open(DialogComponent, {
+            data: { message: 'Are you sure you want to cancel reservation with a 50% payment panelty ?', data: data, inputHidden: true, method: 'PaidCancellation' }
         });
     }
 }

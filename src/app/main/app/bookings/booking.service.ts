@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BaseService } from 'app/utilities/base.service';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -173,6 +173,16 @@ export class BookingService {
 
     checkOutUser(info): any {
         return this.httpClient.post(
-            this.baseService.getBaseUrl() + 'Bookings/CheckOut/' + info, null);
+            this.baseService.getBaseUrl() + 'Bookings/CheckOut/', info);
+    }
+
+    FreeCancellation(info): any {
+        return this.httpClient.post(
+            this.baseService.getBaseUrl() + 'Bookings/FreeCancellation/', info);
+    }
+
+    PaidCancellation(info): any {
+        return this.httpClient.post(
+            this.baseService.getBaseUrl() + 'Bookings/PaidCancellation/', info);
     }
 }

@@ -1,7 +1,7 @@
+import { SupplierService } from '../supplier.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { SupplierService } from '../supplier.service';
 
 @Component({
   selector: 'app-newsupplier',

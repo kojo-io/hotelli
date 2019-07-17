@@ -1,6 +1,5 @@
-import { TestBed, inject } from '@angular/core/testing';
-
 import { HttpinterceptorService } from './httpinterceptor.service';
+import { TestBed, inject } from '@angular/core/testing';
 
 describe('HttpinterceptorService', () => {
   beforeEach(() => {

@@ -1,7 +1,7 @@
-import { FacilityService } from './../facility/facility.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatTableDataSource, MatSnackBar, MatPaginator, MatSort } from '@angular/material';
+import { FacilityService } from '../facility/facility.service';
 
 @Component({
     selector: 'app-facility-type',

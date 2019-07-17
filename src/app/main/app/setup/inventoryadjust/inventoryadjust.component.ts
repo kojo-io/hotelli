@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BaseService } from 'app/utilities/base.service';
 import { InventoryService } from '../inventory/inventory.service';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: 'app-inventoryadjust',
@@ -11,10 +11,11 @@ import { InventoryService } from '../inventory/inventory.service';
 })
 export class InventoryadjustComponent implements OnInit {
 
-    displayedColumns = ['NewQuantity', 'Reason', 'PreviousQuantity'];
+    displayedColumns = ['QuantityAdded', 'NewQuantity', 'PreviousQuantity', 'Reason'];
     adjustmentForm: FormGroup;
     datasource = new MatTableDataSource<any>();
     editstate = false;
+    inventoryAdjust: Array<any> = [];
     id: any;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -29,10 +30,24 @@ export class InventoryadjustComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.getInvent();
+        this.dialogRef.disableClose = true;
         this.adjustmentForm = this._formBuilder.group({
             newQuantity: ['', Validators.required],
             reason: ['', Validators.required]
         });
+    }
+
+
+    getInvent(): void {
+        this._inventoryService.getItemsAdjustments(this.data.id).subscribe(
+            result => {
+                this.inventoryAdjust = result;
+                this.datasource = new MatTableDataSource<any>(this.inventoryAdjust);
+                this.datasource.paginator = this.paginator;
+                this.datasource.sort = this.sort;
+            }
+        );
     }
 
     applyFilter(filterValue: string): void {
@@ -74,6 +89,7 @@ export class InventoryadjustComponent implements OnInit {
                     });
 
                     this.adjustmentForm.reset();
+                    this.getInvent();
                 }
                 else {
                     this.snackBar.open(result.message, 'dismiss', {

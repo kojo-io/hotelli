@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TaxsetupComponent } from './taxsetup.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from 'q';
 
 describe('TaxsetupComponent', () => {
   let component: TaxsetupComponent;

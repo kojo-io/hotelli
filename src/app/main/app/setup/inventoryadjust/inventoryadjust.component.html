@@ -1,4 +1,7 @@
 <div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" style="padding-left:10px">
+    <button mat-fab class="closebutton mat-warn" (click)="closeModal()">
+        <mat-icon>close</mat-icon>
+    </button>
     <br>
     <div fxLayout="column" fxFlex="100">
         <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto" fxLayoutGap="10px"
@@ -47,12 +50,20 @@
         <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutGap="0px">
                 <table mat-table matSort [dataSource]="datasource" fxFlex="100">
+                    <ng-container matColumnDef="QuantityAdded">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Quantity Added
+                        </th>
+                        <td mat-cell *matCellDef="let elemant">
+                            {{ elemant.quantityAdded }}
+                        </td>
+                    </ng-container>
                     <ng-container matColumnDef="NewQuantity">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>
                             New Quantity
                         </th>
                         <td mat-cell *matCellDef="let elemant">
-                           {{ elemant.NewQuantity }}
+                           {{ elemant.newQuantity }}
                         </td>
                     </ng-container>
                      <ng-container matColumnDef="PreviousQuantity">
@@ -60,7 +71,7 @@
                              Previous Quantity
                          </th>
                          <td mat-cell *matCellDef="let elemant">
-                             {{ elemant.PreviousQuantity }}
+                             {{ elemant.previousQuantity }}
                          </td>
                      </ng-container>
                       <ng-container matColumnDef="Reason">
@@ -68,7 +79,7 @@
                               Reason
                           </th>
                           <td mat-cell *matCellDef="let elemant">
-                              {{ elemant.Reason }}
+                              {{ elemant.reason }}
                           </td>
                       </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" align="center"></tr>

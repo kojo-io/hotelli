@@ -1,7 +1,3 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from './login.service';
 
@@ -9,6 +5,10 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { BaseService } from 'app/utilities/base.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'login',

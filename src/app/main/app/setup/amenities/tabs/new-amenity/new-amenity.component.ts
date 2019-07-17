@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AmenityService } from './../../amenity.service';
+import { EventEmitter, Component, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { AmenityService } from '../../amenity.service';
 
 @Component({
   selector: 'app-new-amenity',

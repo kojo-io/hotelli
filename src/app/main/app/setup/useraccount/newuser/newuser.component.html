@@ -1,0 +1,89 @@
+<form name="userForm" [formGroup]="userForm" novalidate fusePerfectScrollbar>
+    <br />
+    <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center start">
+        <div fxLayout="column" fxFlex="100">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" type="text" />
+                <mat-error>
+                    Please enter a First Name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" type="text" />
+                <mat-error>
+                    Please enter a Last Name
+                </mat-error>
+            </mat-form-field>
+             <mat-form-field appearance="outline">
+                 <mat-datepicker-toggle matSuffix [for]="dOB">
+                 </mat-datepicker-toggle>
+                 <mat-label>Date of Birth</mat-label>
+                 <input matInput formControlName="dOB" [matDatepicker]="dOB" placeholder="Date of Birth">
+                 <mat-datepicker #dOB></mat-datepicker>
+             </mat-form-field>
+               <mat-form-field appearance="outline">
+                   <mat-label>Contact</mat-label>
+                   <input matInput formControlName="phone" type="text" />
+                   <mat-error>
+                       Please enter a phone number
+                   </mat-error>
+               </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="username" type="text" />
+                    <mat-error *ngIf="userForm.get('username').hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="userForm.get('username').hasError('email')">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address"></textarea>
+                <mat-error>
+                    Please enter an address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option *ngFor="let item of roles" [value]="item.name">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    Verification is required
+                </mat-error>
+            </mat-form-field>
+             <mat-checkbox formControlName="canlogin" [labelPosition]="'before'">Can User Login</mat-checkbox>
+             <br />
+            <mat-checkbox formControlName="isactive" [labelPosition]="'before'">Is Active</mat-checkbox>
+            <br />
+            <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+                <button mat-raised-button class="save-button mat-accent" [disabled]="userForm.invalid"
+                    aria-label="SAVE" (click)="save()">
+                    {{btnText}}
+                </button>
+
+                <!-- <button mat-raised-button class="save-button mat-warn" [disabled]="userForm.invalid" aria-label="SAVE"
+         (click)="delete()">
+         DELETE
+     </button> -->
+
+                <button mat-raised-button class="save-button mat-primary" [disabled]="userForm.invalid"
+                    aria-label="SAVE" (click)="userForm.reset(); btnText='SAVE'; editstate=false;">
+                    CLEAR
+                </button>
+
+                <button mat-raised-button class="save-button mat-danger" aria-label="SAVE" (click)="dialogRef.close()">
+                    CLOSE
+                </button>
+
+            </div>
+        </div>
+    </div>
+</form>

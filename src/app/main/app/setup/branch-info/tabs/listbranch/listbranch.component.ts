@@ -1,6 +1,6 @@
-import { BranchInfoService } from './../../branch-info.service';
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { EventEmitter, Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { BranchInfoService } from '../../branch-info.service';
 
 @Component({
   selector: 'app-listbranch',

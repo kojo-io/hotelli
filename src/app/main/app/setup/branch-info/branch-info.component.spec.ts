@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BranchInfoComponent } from './branch-info.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from 'q';
 
 describe('BranchInfoComponent', () => {
   let component: BranchInfoComponent;

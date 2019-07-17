@@ -1,7 +1,7 @@
-import { RoomtypeService } from './../../roomtype.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { RoomtypeService } from '../../roomtype.service';
 
 @Component({
   selector: 'app-new-roomtype',

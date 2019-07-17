@@ -1,6 +1,6 @@
-import { RoompriceService } from './../../roomprice.service';
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { EventEmitter, Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { RoompriceService } from '../../roomprice.service';
 
 @Component({
   selector: 'app-list-roomprice',

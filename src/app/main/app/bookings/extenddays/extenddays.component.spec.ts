@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExtenddaysComponent } from './extenddays.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from 'q';
 
 describe('ExtenddaysComponent', () => {
   let component: ExtenddaysComponent;

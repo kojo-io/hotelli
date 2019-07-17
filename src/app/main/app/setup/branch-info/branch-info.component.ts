@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListbranchComponent } from './tabs/listbranch/listbranch.component';
 import { NewBranchComponent } from './tabs/new-branch/new-branch.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
 
 @Component({

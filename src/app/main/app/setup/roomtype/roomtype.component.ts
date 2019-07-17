@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { NewRoomtypeComponent } from './tabs/new-roomtype/new-roomtype.component';
 import { ListRoomtypeComponent } from './tabs/list-roomtype/list-roomtype.component';
+import { ViewChild, Component, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
 
 @Component({

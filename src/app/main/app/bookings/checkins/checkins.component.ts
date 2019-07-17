@@ -1,11 +1,15 @@
-import { DialogComponent } from './../dialog/dialog.component';
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ExtenddaysComponent } from '../extenddays/extenddays.component';
-import { MatTableDataSource, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatPaginator, MatSort } from '@angular/material';
 import { BookingService } from '../booking.service';
 import { BaseService } from 'app/utilities/base.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { BillingComponent } from '../../financial/billing/billing.component';
+import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { navigation } from 'app/navigation/navigation';
+import { receptionNav } from 'app/navigation/receptionnav';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatPaginator, MatSort } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-checkins',
@@ -37,6 +41,7 @@ export class CheckinsComponent implements OnInit {
     reservations: any;
     extendDaysAllowed: Boolean = true;
     checkOutAllowed: Boolean = true;
+    navigation: any;
     constructor(
         public dialogRef: MatDialogRef<CheckinsComponent>,
         private _bookService: BookingService,
@@ -46,7 +51,28 @@ export class CheckinsComponent implements OnInit {
         public snackBar: MatSnackBar,
         private route: ActivatedRoute,
         @Inject(MAT_DIALOG_DATA) public data: any,
-    ) { }
+        private _fuseNavigationService: FuseNavigationService,
+        private _fuseSidebarService: FuseSidebarService,
+    ) {
+        //  Get default navigation
+        if (this._baseService.getUserData().role === 'Administrator') {
+            this.navigation = navigation;
+        }
+
+        if (this._baseService.getUserData().role === 'Receptionist') {
+            this.navigation = receptionNav;
+        }
+        // Set default navigation
+
+        // Unregister navigation
+        this._fuseNavigationService.unregister('setups');
+
+        // Register the navigation to the service
+        this._fuseNavigationService.register('setups', this.navigation);
+
+        // Set the main navigation as our current navigation
+        this._fuseNavigationService.setCurrentNavigation('setups');
+     }
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     ngOnInit(): void {
@@ -148,6 +174,10 @@ export class CheckinsComponent implements OnInit {
             this.extendDaysAllowed = false;
         }
 
+        // if (today > chOut) {
+        //     this.checkOutAllowed = false;
+        // }
+
     }
 
     extendDays(data): any {
@@ -168,7 +198,7 @@ export class CheckinsComponent implements OnInit {
 
     checkOut(data): any {
         this.modal.open(DialogComponent, {
-            data: {message: 'Are you sure you want to check out user ?', data: data}
+            data: { message: 'Are you sure you want to check out user ?', data: data, inputHidden: false, method: 'checkOut'}
         });
     }
 }

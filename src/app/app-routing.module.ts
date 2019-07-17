@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { RouteGuard } from './utilities/rout-guard.service';
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { AppsComponent } from './main/app/app.component';
 
 const routes: Routes = [
     {

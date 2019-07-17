@@ -1,10 +1,15 @@
 import { BookComponent } from './book/book.component';
 import { BookingService } from './booking.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AmenityService } from '../setup/amenities/amenity.service';
+import { navigation } from 'app/navigation/navigation';
+import { receptionNav } from 'app/navigation/receptionnav';
+import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { BaseService } from 'app/utilities/base.service';
 
 @Component({
     selector: 'app-bookings',
@@ -18,12 +23,35 @@ export class BookingsComponent implements OnInit {
     amenities: any;
     bookings: any;
     message: any;
+    navigation: any;
     constructor(
         private _formbuilder: FormBuilder,
         private _amenityService: AmenityService,
         private _bookService: BookingService,
-        public snackBar: MatSnackBar
-    ) { }
+        public snackBar: MatSnackBar,
+        private baseService: BaseService,
+        private _fuseNavigationService: FuseNavigationService,
+        private _fuseSidebarService: FuseSidebarService,
+    ) { 
+        //  Get default navigation
+        if (this.baseService.getUserData().role === 'Administrator') {
+            this.navigation = navigation;
+        }
+
+        if (this.baseService.getUserData().role === 'Receptionist') {
+            this.navigation = receptionNav;
+        }
+        // Set default navigation
+
+        // Unregister navigation
+        this._fuseNavigationService.unregister('setups');
+
+        // Register the navigation to the service
+        this._fuseNavigationService.register('setups', this.navigation);
+
+        // Set the main navigation as our current navigation
+        this._fuseNavigationService.setCurrentNavigation('setups');
+    }
     @ViewChild(BookComponent) bookcomponent;
     ngOnInit(): void {
         this.bookingForm = this._formbuilder.group({

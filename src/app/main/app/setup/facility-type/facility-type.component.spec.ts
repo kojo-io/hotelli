@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FacilityTypeComponent } from './facility-type.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from 'q';
 
 describe('FacilityTypeComponent', () => {
   let component: FacilityTypeComponent;
