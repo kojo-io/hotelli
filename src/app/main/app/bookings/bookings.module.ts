@@ -22,6 +22,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { BillingComponent } from '../financial/billing/billing.component';
 import { CalendarModule as AngularCalendarModule } from 'angular-calendar';
+import { AllComponent } from './all/all.component';
 
 
 const routes: Routes = [
@@ -39,9 +40,14 @@ const routes: Routes = [
                 component: BookingsComponent
              },
             {
-                path: 'list',
+                path: 'guests',
                 canActivate: [RouteGuard],
                 component: ListBookingsComponent
+            },
+            {
+                path: 'list',
+                canActivate: [RouteGuard],
+                component: AllComponent
             }
         ]
     }
@@ -98,7 +104,8 @@ const routes: Routes = [
         ExtenddaysComponent,
         CheckinsComponent,
         BillingComponent,
-        DialogComponent
+        DialogComponent,
+        AllComponent
     ],
     entryComponents: [ReservationsComponent, ExtenddaysComponent, CheckinsComponent, BillingComponent, DialogComponent],
     providers: [

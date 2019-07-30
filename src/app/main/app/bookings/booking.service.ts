@@ -118,6 +118,12 @@ export class BookingService {
                 'Bookings/GetBranchBookings/');
     }
 
+    getBookings(): any {
+        return this.httpClient.get(
+            this.baseService.getBaseUrl() +
+            'Bookings/Bookings/');
+    }
+
     addGuest(info): any {
         info.branchId = this.baseService.getCurrentBranch().id;
         return this.httpClient.post(

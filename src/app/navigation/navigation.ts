@@ -28,8 +28,15 @@ export const navigation: FuseNavigation[] = [
                        url: '/app/bookings/book'
                    },
                    {
+                       id: 'guest',
+                       title: 'Guest',
+                       type: 'item',
+                       icon: 'event',
+                       url: '/app/bookings/guests'
+                   },
+                   {
                        id: 'bookings',
-                       title: 'Guest Bookings',
+                       title: 'Bookings',
                        type: 'item',
                        icon: 'event',
                        url: '/app/bookings/list'

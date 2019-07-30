@@ -1,0 +1,132 @@
+<div id="products" class="page-layout carded fullwidth inner-scroll">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header mat-accent-bg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    account_box
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    ALL BOOKINGS
+                </span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-input-wrapper mx-24 m-md-0" fxFlex="1 0 auto" fxLayout="row"
+                fxLayoutAlign="start center">
+                <label for="search" class="mr-8">
+                    <mat-icon class="secondary-text">search</mat-icon>
+                </label>
+                <mat-form-field floatLabel="never" fxFlex="1 0 auto">
+                    <input id="search" matInput #filter placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                </mat-form-field>
+            </div>
+            <!-- / SEARCH -->
+        </div>
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+            <mat-table class="products-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
+                fusePerfectScrollbar>
+
+                <ng-container matColumnDef="bookId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>bookId</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.bookId}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="guest">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Guest</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.guest.firstName}} {{book.guest.lastName}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="contact">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Contact</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.guest.contact}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.guest.email}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="room">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Room No.</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.room.number}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CheckInDateTime">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Check In</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.checkInDateTime}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CheckOutDateTime">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Check Out</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.checkOutDateTime}}</p>
+                    </mat-cell>
+                </ng-container>
+                <!-- <ng-container matColumnDef="Nights">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nights</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.nights}}</p>
+                    </mat-cell>
+                </ng-container> -->
+                <!-- <ng-container matColumnDef="BookDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Book Date</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.bookDate}}</p>
+                    </mat-cell>
+                </ng-container> -->
+                <ng-container matColumnDef="BookType">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Book Type</mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <p class="text-truncate">{{book.bookType}}</p>
+                    </mat-cell>
+                </ng-container>
+                 <ng-container matColumnDef="Status">
+                     <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+                     <mat-cell *matCellDef="let book">
+                         <p class="text-truncate">{{book.status}}</p>
+                     </mat-cell>
+                 </ng-container>
+                <!-- <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                    <mat-cell *matCellDef="let book">
+                        <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                            (click)="$event.stopPropagation()">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <mat-icon class="secondary-text">menu</mat-icon>
+                            &nbsp;&nbsp;
+                            <span>Menu</span>
+                        </button>
+                        <mat-menu #moreMenu="matMenu">
+                            <button mat-menu-item aria-label="toggle done" (click)="istockAdjust(book.u)">
+                                <span>Item Stock Adjustment</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container> -->
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let book; columns: displayedColumns;" class="product" matRipple>
+                </mat-row>
+            </mat-table>
+            <mat-paginator #paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+        </div>
+    </div>

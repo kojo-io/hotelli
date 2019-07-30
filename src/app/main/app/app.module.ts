@@ -21,7 +21,7 @@ import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { LayoutModule } from '@angular/cdk/layout';
-import { AppsComponent } from './app.component';
+// import { AppsComponent } from './app.component';
 import 'hammerjs';
 
 
