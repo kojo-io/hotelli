@@ -58,6 +58,14 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     Action
                 </th>
+                <td mat-cell *matCellDef="let elemant">
+                    <a (click)="getBranch(elemant.id)" color="accent" mat-button>
+                        <mat-icon matSuffix>edit</mat-icon> Edit
+                    </a>
+                    <a (click)="deleteBranch(elemant.id)" color="danger" mat-button>
+                        <mat-icon matSuffix>delete</mat-icon> Delete
+                    </a>
+                </td>
                 <td mat-cell *matCellDef="let elemant" >
                     <a *ngIf="elemant.name !== 'Main'" (click)="getBranch(elemant.id)" color="accent" mat-button>
                         <mat-icon matSuffix>edit</mat-icon> Edit

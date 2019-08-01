@@ -115,6 +115,8 @@ export class NewuserComponent implements OnInit {
         );
     }
 
+    
+
     // delete(): void {
     //     this.sponsorService.deleteSponsortype(this.data.id).subscribe(
     //         result => {

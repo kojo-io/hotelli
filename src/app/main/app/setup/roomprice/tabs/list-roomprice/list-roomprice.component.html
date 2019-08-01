@@ -54,7 +54,11 @@
                         <a (click)="getRoomPrice(elemant.id)" color="accent" mat-button>
                             <mat-icon matSuffix>edit</mat-icon> Edit
                         </a>
+                        <a (click)="deleteRoomPrice(elemant.id)" color="accent" mat-button>
+                            <mat-icon matSuffix>delete</mat-icon> Delete
+                        </a>
                     </td>
+                    
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" align="center"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

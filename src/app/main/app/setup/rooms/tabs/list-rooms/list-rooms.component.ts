@@ -103,4 +103,15 @@ export class ListRoomsComponent implements OnInit {
         });
     }
 
+    deleteRoom(Id: string): void {
+        this._roomService.deleteRoom(Id).subscribe(
+            result => {
+                if(result.status === 100){
+                    this.getAllRooms();
+                    alert(result.message);
+                }    
+            }
+        );
+    }
+
 }

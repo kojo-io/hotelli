@@ -42,4 +42,8 @@ export class RoomService {
         return this.httpClient.post(this.baseService.getBaseUrl() + 'RoomAmenities/AddRoomAmenities/' + id, Amenities);
     }
 
+    deleteRoom(id): any{
+        return this.httpClient.delete(this.baseService.getBaseUrl() + 'Rooms/DeleteRoom/' + id);
+    }
+
 }

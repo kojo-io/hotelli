@@ -8,10 +8,10 @@ const routes: Routes = [
         path: 'login',
         loadChildren: './main/login/login.module#LoginModule'
     },
-    // {
-    //     path: 'register',
-    //     loadChildren: './main/register/register.module#RegisterModule'
-    // },
+    {
+        path: 'register',
+        loadChildren: './main/register/register.module#RegisterModule'
+    },
     {
         path: 'app',
         canActivate: [RouteGuard],

@@ -84,6 +84,11 @@
                         <mat-checkbox [disabled]="true" [checked]="sponsortype.data.isactive"></mat-checkbox>
                     </mat-cell>
                 </ng-container>
+
+                <!-- <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef mat-sort-hearder>Action</mat-header-cell>
+                </ng-container> -->
+
                 <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
 
                 <mat-row *matRowDef="let sponsortype; columns: displayedColumns;" class="product" matRipple

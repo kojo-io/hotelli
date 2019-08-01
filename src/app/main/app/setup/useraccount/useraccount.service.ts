@@ -27,4 +27,12 @@ export class UseraccountService {
     putEmployees(info): any {
         return this.httpClient.put(`${this.baseService.getBaseUrl()}Employees/${info.role}/${info.id}`, info);
     }
+
+    deleteEmployee(info):any{
+        return this.httpClient.delete(`${this.baseService.getBaseUrl()}Employees/${info.id}`);
+    }
+
+    // deleteEmployee(id): any{
+    //     return this.httpClient.delete(this.baseService.getBaseUrl() + 'Employee/' + id.id);
+    // }
 }

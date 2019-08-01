@@ -36,4 +36,8 @@ export class BranchInfoService {
     getbranch(id): any{
         return this.httpClient.get(this.baseService.getBaseUrl() + 'Branch/GetBranch?branchId=' + id);
     }
+
+    deleteBranch(id): any{
+        return this.httpClient.delete(this.baseService.getBaseUrl() + 'Branch/DeleteBranch/' + id);
+    }
 }

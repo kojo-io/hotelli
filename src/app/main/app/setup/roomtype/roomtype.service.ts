@@ -33,4 +33,8 @@ export class RoomtypeService {
     getRoomType(id): any {
         return this.httpClient.get(this.baseService.getBaseUrl() + 'SetupItems/RoomType?roomTypeId=' + id);
     }
+
+    deleteRoomType(id): any{
+        return this.httpClient.delete(this.baseService.getBaseUrl() + 'SetupItems/DeleteRoomType/' + id);
+    }
 }

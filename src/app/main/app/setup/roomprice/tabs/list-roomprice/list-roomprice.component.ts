@@ -50,6 +50,17 @@ export class ListRoompriceComponent implements OnInit {
         );
     }
 
+    deleteRoomPrice(Id: string): void {
+        this._roomPriceService.deleteRoomPrice(Id).subscribe(
+            result => {
+                if(result.status === 100){
+                    this.getAllRoomPrices();
+                    alert(result.message);
+                }    
+            }
+        );
+    }
+
 
     getAllRoomPrices(): void {
         this._roomPriceService.listRoomPrices().subscribe(

@@ -47,6 +47,16 @@ export class ListRoomtypeComponent implements OnInit {
         );
     }
 
+    deleteRoomType(Id: string): void {
+        this._roomTypeService.deleteRoomType(Id).subscribe(
+            result => {
+                if(result.status === 100){
+                    this.getAllRoomTypes();
+                    alert(result.message);
+                }    
+            }
+        );
+    }
 
     getAllRoomTypes(): void {
         this._roomTypeService.listRoomTypes().subscribe(

@@ -33,4 +33,8 @@ export class RoompriceService {
     getRoomPrice(id): any {
         return this.httpClient.get(this.baseService.getBaseUrl() + 'SetupItems/RoomPrice?roomPriceId=' + id);
     }
+
+    deleteRoomPrice(id): any{
+        return this.httpClient.delete(this.baseService.getBaseUrl() + 'SetupItems/DeleteRoomPrice/' + id);
+    }
 }

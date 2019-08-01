@@ -53,7 +53,7 @@ export class UseraccountComponent implements OnInit {
 
     edit(elem): void {
         this.dialogRef = this._matDialog.open(NewuserComponent, {
-            width: '500px',
+            width: '520px',
             data: elem
         });
 
@@ -66,12 +66,23 @@ export class UseraccountComponent implements OnInit {
 
     newemp(): void {
         this.dialogRef = this._matDialog.open(NewuserComponent, {
-            width: '500px'
+            width: '520px'
         });
 
         this._matDialog.afterAllClosed.subscribe(
             result => {
                 this.getEmployees();
+            }
+        );
+    }
+
+    deleteEmployee(Id: string): void {
+        this._userAccountService.deleteEmployee(Id).subscribe(
+            result => {
+                if(result.status === 100){
+                    this.getEmployees();
+                    alert(result.message);
+                }    
             }
         );
     }

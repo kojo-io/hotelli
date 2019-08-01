@@ -39,6 +39,9 @@
                         <a (click)="getRoomType(elemant.id)" color="accent" mat-button>
                             <mat-icon matSuffix>edit</mat-icon> Edit
                         </a>
+                        <a (click)="deleteRoomType(elemant.id)" color="danger" mat-button>
+                            <mat-icon matSuffix>delete</mat-icon> Delete
+                        </a>
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" align="center"></tr>

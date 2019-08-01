@@ -51,6 +51,16 @@ displayedColumns: string[] = [
         );
     }
 
+    deleteBranch(Id: string): void {
+        this._branchService.deleteBranch(Id).subscribe(
+            result => {
+                if(result.status === 100){
+                    this.getAllBranches();
+                    alert(result.message);
+                }    
+            }
+        );
+    }
 
   getAllBranches(): void{
     this._branchService.listBranches().subscribe(
