@@ -86,7 +86,7 @@ export class ListRoompriceComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result === 'Confirm') {
-                this.deleteRoomPrice(elemant.id);
+                this. deleteRoomPrice(elemant.id);
                 // this.getAllRoomTypes();
                 console.log('The dialog was closed');
             }

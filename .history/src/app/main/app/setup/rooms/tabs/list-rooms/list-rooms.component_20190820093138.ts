@@ -2,12 +2,11 @@ import { RoomService } from '../../room.service';
 import { EventEmitter, Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { RoomamenityComponent } from '../modal/roomamenity/roomamenity.component';
-import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.component';
 
 @Component({
-    selector: 'app-list-rooms',
-    templateUrl: './list-rooms.component.html',
-    styleUrls: ['./list-rooms.component.scss']
+  selector: 'app-list-rooms',
+  templateUrl: './list-rooms.component.html',
+  styleUrls: ['./list-rooms.component.scss']
 })
 export class ListRoomsComponent implements OnInit {
     displayedColumns: string[] = [
@@ -31,10 +30,10 @@ export class ListRoomsComponent implements OnInit {
     rooms: any;
     datasource = new MatTableDataSource<any>();
     roomAmenities: any;
-    constructor(
-        private _roomService: RoomService,
-        public modal: MatDialog,  public dialog: MatDialog
-    ) { }
+  constructor(
+      private _roomService: RoomService,
+      public modal: MatDialog
+  ) { }
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -49,11 +48,11 @@ export class ListRoomsComponent implements OnInit {
         }
     }
 
-    ngOnInit(): void {
-        this.getAllRooms();
-    }
+  ngOnInit(): void{
+      this.getAllRooms();
+  }
 
-
+  
 
     getRoom(Id: string): void {
         this._roomService.getRoom(Id).subscribe(
@@ -83,7 +82,7 @@ export class ListRoomsComponent implements OnInit {
         );
     }
 
-    getRoomAmenities(id): void {
+    getRoomAmenities(id): void{
         this._roomService.listRoomAmenities(id).subscribe(
             result => {
                 if (result.roomAmenities != null) {
@@ -93,7 +92,7 @@ export class ListRoomsComponent implements OnInit {
         );
     }
 
-    openModal(id): void {
+    openModal(id): void{
         const dialogref = this.modal.open(RoomamenityComponent, {
             width: '50%',
             data: id
@@ -107,33 +106,12 @@ export class ListRoomsComponent implements OnInit {
     deleteRoom(Id: string): void {
         this._roomService.deleteRoom(Id).subscribe(
             result => {
-                if (result.status === 100) {
+                if(result.status === 100){
                     this.getAllRooms();
                     alert(result.message);
-                }
+                }    
             }
         );
-    }
-     // material dialog
-     openDialog(elemant): void {
-        const dialogRef = this.dialog.open(DialogboxComponent, {
-            width: '250px',
-            data: elemant,
-        });
-       
-        dialogRef.afterClosed().subscribe(result => {
-            
-            if (result === 'Confirm') {
-                this. deleteRoom(elemant.id);
-                // this.getAllRoomTypes();
-                // console.log('The dialog was closed');
-            }
-            else { 
-                if (result === 'Cancel') {
-                this.dialog.closeAll();
-            }
-        }
-        });
     }
 
 }

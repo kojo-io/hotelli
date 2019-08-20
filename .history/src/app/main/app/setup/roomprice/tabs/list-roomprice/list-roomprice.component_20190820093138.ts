@@ -1,12 +1,11 @@
 import { EventEmitter, Component, OnInit, Output, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { RoompriceService } from '../../roomprice.service';
-import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.component';
 
 @Component({
-    selector: 'app-list-roomprice',
-    templateUrl: './list-roomprice.component.html',
-    styleUrls: ['./list-roomprice.component.scss']
+  selector: 'app-list-roomprice',
+  templateUrl: './list-roomprice.component.html',
+  styleUrls: ['./list-roomprice.component.scss']
 })
 export class ListRoompriceComponent implements OnInit {
 
@@ -22,7 +21,7 @@ export class ListRoompriceComponent implements OnInit {
     datasource = new MatTableDataSource<any>();
 
     constructor(
-        private _roomPriceService: RoompriceService, public dialog: MatDialog
+        private _roomPriceService: RoompriceService
     ) { }
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -54,10 +53,10 @@ export class ListRoompriceComponent implements OnInit {
     deleteRoomPrice(Id: string): void {
         this._roomPriceService.deleteRoomPrice(Id).subscribe(
             result => {
-                if (result.status === 100) {
+                if(result.status === 100){
                     this.getAllRoomPrices();
-                    // alert(result.message);
-                }
+                    alert(result.message);
+                }    
             }
         );
     }
@@ -75,27 +74,6 @@ export class ListRoompriceComponent implements OnInit {
                 }
             }
         );
-    }
-     // material dialog
-     openDialog(elemant): void {
-        const dialogRef = this.dialog.open(DialogboxComponent, {
-            width: '250px',
-            data: elemant,
-        });
-       
-        dialogRef.afterClosed().subscribe(result => {
-            
-            if (result === 'Confirm') {
-                this.deleteRoomPrice(elemant.id);
-                // this.getAllRoomTypes();
-                console.log('The dialog was closed');
-            }
-            else { 
-                if (result === 'Cancel') {
-                this.dialog.closeAll();
-            }
-        }
-        });
     }
 
 

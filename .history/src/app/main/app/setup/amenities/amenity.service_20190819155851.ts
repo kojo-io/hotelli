@@ -34,7 +34,4 @@ export class AmenityService {
     getAmenity(id): any {
         return this.httpClient.get(this.baseService.getBaseUrl() + 'SetupItems/Amenity?amenityId=' + id);
     }
-    deleteAmenity(id): any{
-        return this.httpClient.delete(this.baseService.getBaseUrl() + '');
-    }
 }

@@ -1,7 +1,6 @@
 import { EventEmitter, Component, OnInit, Output, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { AmenityService } from '../../amenity.service';
-import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.component';
 
 @Component({
   selector: 'app-list-amenity',
@@ -18,7 +17,7 @@ export class ListAmenityComponent implements OnInit {
     datasource = new MatTableDataSource<any>();
 
   constructor(
-      private _amenityService: AmenityService, public dialog: MatDialog
+      private _amenityService: AmenityService
   ) { }
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -58,36 +57,5 @@ export class ListAmenityComponent implements OnInit {
                 }
             }
         );
-    }
-    deleteAmenities(Id: string): void {
-        this._amenityService.deleteAmenity(Id).subscribe(
-            result => {
-                if (result.status === 100) {
-                    this.getAllAmenities();
-                    // alert(result.message);
-                }
-            }
-        );
-    }
-     // material dialog
-     openDialog(elemant): void {
-        const dialogRef = this.dialog.open(DialogboxComponent, {
-            width: '250px',
-            data: elemant,
-        });
-       
-        dialogRef.afterClosed().subscribe(result => {
-            
-            if (result === 'Confirm') {
-                this. deleteAmenities(elemant.id);
-                // this.getAllRoomTypes();
-                console.log('The dialog was closed');
-            }
-            else { 
-                if (result === 'Cancel') {
-                this.dialog.closeAll();
-            }
-        }
-        });
     }
 }

@@ -19,7 +19,7 @@
                         Room Type
                     </th>
                     <td mat-cell *matCellDef="let elemant">
-                        {{ elemant.roomType}}
+                        {{ elemant.roomType }}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="Currency">
@@ -54,7 +54,7 @@
                         <a (click)="getRoomPrice(elemant.id)" color="accent" mat-button>
                             <mat-icon matSuffix>edit</mat-icon> Edit
                         </a>
-                        <a (click)="openDialog(elemant)" color="accent" mat-button>
+                        <a  (click)="openDialog(elemant)"color="accent" mat-button>
                             <mat-icon matSuffix>delete</mat-icon> Delete
                         </a>
                     </td>
