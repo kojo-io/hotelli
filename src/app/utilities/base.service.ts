@@ -4,8 +4,8 @@ import { MatSnackBar } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 
 
-  const baseURL = 'https://localhost:44341/api/';
-//  const baseURL = 'https://api.hoteli.devwas.com/api/';
+//   const baseURL = 'https://localhost:44341/api/';
+  const baseURL = 'https://api.hoteli.devwas.com/api/';
 //  CRRuntime_32bit_13_0_22
 @Injectable({
   providedIn: 'root'

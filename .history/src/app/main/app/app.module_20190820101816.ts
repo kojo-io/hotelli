@@ -23,7 +23,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { LayoutModule } from '@angular/cdk/layout';
 // import { AppsComponent } from './app.component';
 import 'hammerjs';
-// import { DialogboxComponent } from './components/dialogbox/dialogbox.component';
+import { DialogboxComponent } from './components/dialogbox/dialogbox.component';
 
 
 const routes: Routes = [
@@ -117,11 +117,11 @@ const routes: Routes = [
 
 
     ],
-    declarations: [DashboardComponent, InvoiceComponent, ReceiptComponent, FinancialComponent],
+    declarations: [DashboardComponent, InvoiceComponent, ReceiptComponent, FinancialComponent, DialogboxComponent],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
         { provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true },
     ],
-    entryComponents: []
+    entryComponents: [DialogboxComponent]
 })
 export class AppModule {}

@@ -4,24 +4,23 @@ import { RoomtypeService } from '../../roomtype.service';
 import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.component';
 
 @Component({
-    selector: 'app-list-roomtype',
-    templateUrl: './list-roomtype.component.html',
-    styleUrls: ['./list-roomtype.component.scss']
+  selector: 'app-list-roomtype',
+  templateUrl: './list-roomtype.component.html',
+  styleUrls: ['./list-roomtype.component.scss']
 })
 export class ListRoomtypeComponent implements OnInit {
     displayedColumns: string[] = [
         'Name',
         'Description',
         'Action'
-        
     ];
     @Output() componentEvent = new EventEmitter<any>();
     roomTypes: any;
     datasource = new MatTableDataSource<any>();
 
-    constructor(
-        private _roomTypeService: RoomtypeService, public dialog: MatDialog
-    ) { }
+  constructor(
+      private _roomTypeService: RoomtypeService,  public dialog: MatDialog
+  ) { }
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
@@ -34,10 +33,9 @@ export class ListRoomtypeComponent implements OnInit {
             this.datasource.filter = filterValue.trim().toLowerCase();
         }
     }
-    ngOnInit(): void {
-        this.getAllRoomTypes();
-
-    }
+  ngOnInit(): void {
+      this.getAllRoomTypes();
+  }
 
     getRoomType(Id: string): void {
         this._roomTypeService.getRoomType(Id).subscribe(
@@ -53,10 +51,10 @@ export class ListRoomtypeComponent implements OnInit {
     deleteRoomType(Id: string): void {
         this._roomTypeService.deleteRoomType(Id).subscribe(
             result => {
-                if (result.status === 100) {
+                if(result.status === 100){
                     this.getAllRoomTypes();
-                    // alert(result.message);
-                }
+                    alert(result.message);
+                }    
             }
         );
     }
@@ -74,25 +72,18 @@ export class ListRoomtypeComponent implements OnInit {
             }
         );
     }
-    // material dialog
-    openDialog(elemant): void {
+     // material dialog
+     openDialog(element): void {
         const dialogRef = this.dialog.open(DialogboxComponent, {
             width: '250px',
-            data: elemant,
+            data: element,
         });
-       
+
         dialogRef.afterClosed().subscribe(result => {
-            
+            console.log('The dialog was closed');
             if (result === 'Confirm') {
-                this.deleteRoomType(elemant.id);
-                // this.getAllRoomTypes();
-                console.log('The dialog was closed');
+                this.deleteRoomType(element);
             }
-            else { 
-                if (result === 'Cancel') {
-                this.dialog.closeAll();
-            }
-        }
         });
     }
 

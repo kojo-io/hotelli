@@ -13,7 +13,6 @@ export class ListRoomtypeComponent implements OnInit {
         'Name',
         'Description',
         'Action'
-        
     ];
     @Output() componentEvent = new EventEmitter<any>();
     roomTypes: any;
@@ -36,7 +35,6 @@ export class ListRoomtypeComponent implements OnInit {
     }
     ngOnInit(): void {
         this.getAllRoomTypes();
-
     }
 
     getRoomType(Id: string): void {
@@ -54,7 +52,7 @@ export class ListRoomtypeComponent implements OnInit {
         this._roomTypeService.deleteRoomType(Id).subscribe(
             result => {
                 if (result.status === 100) {
-                    this.getAllRoomTypes();
+                    // this.getAllRoomTypes();
                     // alert(result.message);
                 }
             }
@@ -80,13 +78,12 @@ export class ListRoomtypeComponent implements OnInit {
             width: '250px',
             data: elemant,
         });
-       
+
         dialogRef.afterClosed().subscribe(result => {
-            
+            console.log('The dialog was closed');
             if (result === 'Confirm') {
-                this.deleteRoomType(elemant.id);
-                // this.getAllRoomTypes();
-                console.log('The dialog was closed');
+                this.deleteRoomType(elemant);
+                this.getAllRoomTypes();
             }
             else { 
                 if (result === 'Cancel') {

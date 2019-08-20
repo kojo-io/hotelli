@@ -9,6 +9,7 @@ import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.
     styleUrls: ['./list-roomtype.component.scss']
 })
 export class ListRoomtypeComponent implements OnInit {
+   
     displayedColumns: string[] = [
         'Name',
         'Description',
@@ -36,7 +37,6 @@ export class ListRoomtypeComponent implements OnInit {
     }
     ngOnInit(): void {
         this.getAllRoomTypes();
-
     }
 
     getRoomType(Id: string): void {
@@ -84,8 +84,8 @@ export class ListRoomtypeComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result === 'Confirm') {
-                this.deleteRoomType(elemant.id);
-                // this.getAllRoomTypes();
+                this.deleteRoomType(elemant.Id);
+                this.getAllRoomTypes();
                 console.log('The dialog was closed');
             }
             else { 

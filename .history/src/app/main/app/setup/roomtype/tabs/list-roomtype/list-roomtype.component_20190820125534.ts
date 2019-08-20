@@ -50,10 +50,12 @@ export class ListRoomtypeComponent implements OnInit {
         );
     }
 
-    deleteRoomType(Id: string): void {
+    deleteRoomType(Id): void {
         this._roomTypeService.deleteRoomType(Id).subscribe(
             result => {
                 if (result.status === 100) {
+                    console.log('deleted');
+
                     this.getAllRoomTypes();
                     // alert(result.message);
                 }
@@ -84,7 +86,7 @@ export class ListRoomtypeComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result === 'Confirm') {
-                this.deleteRoomType(elemant.id);
+                this.deleteRoomType(elemant.Id);
                 // this.getAllRoomTypes();
                 console.log('The dialog was closed');
             }

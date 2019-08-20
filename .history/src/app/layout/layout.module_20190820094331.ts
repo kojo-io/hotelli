@@ -22,5 +22,6 @@ import { NgModule } from '@angular/core';
         HorizontalLayout1Module
     ]
 })
-export class LayoutModule {
+export class LayoutModule
+{
 }

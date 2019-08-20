@@ -13,7 +13,6 @@ export class ListRoomtypeComponent implements OnInit {
         'Name',
         'Description',
         'Action'
-        
     ];
     @Output() componentEvent = new EventEmitter<any>();
     roomTypes: any;
@@ -36,7 +35,6 @@ export class ListRoomtypeComponent implements OnInit {
     }
     ngOnInit(): void {
         this.getAllRoomTypes();
-
     }
 
     getRoomType(Id: string): void {
@@ -55,7 +53,7 @@ export class ListRoomtypeComponent implements OnInit {
             result => {
                 if (result.status === 100) {
                     this.getAllRoomTypes();
-                    // alert(result.message);
+                    alert(result.message);
                 }
             }
         );
@@ -75,24 +73,17 @@ export class ListRoomtypeComponent implements OnInit {
         );
     }
     // material dialog
-    openDialog(elemant): void {
+    openDialog(element): void {
         const dialogRef = this.dialog.open(DialogboxComponent, {
             width: '250px',
-            data: elemant,
+            data: element,
         });
-       
+
         dialogRef.afterClosed().subscribe(result => {
-            
+            console.log('The dialog was closed');
             if (result === 'Confirm') {
-                this.deleteRoomType(elemant.id);
-                // this.getAllRoomTypes();
-                console.log('The dialog was closed');
+                this.deleteRoomType(element);
             }
-            else { 
-                if (result === 'Cancel') {
-                this.dialog.closeAll();
-            }
-        }
         });
     }
 

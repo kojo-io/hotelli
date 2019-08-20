@@ -9,6 +9,7 @@ import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.
     styleUrls: ['./list-roomtype.component.scss']
 })
 export class ListRoomtypeComponent implements OnInit {
+   
     displayedColumns: string[] = [
         'Name',
         'Description',
@@ -36,7 +37,6 @@ export class ListRoomtypeComponent implements OnInit {
     }
     ngOnInit(): void {
         this.getAllRoomTypes();
-
     }
 
     getRoomType(Id: string): void {

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/cor
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { RoomtypeService } from '../../roomtype.service';
 import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.component';
+import { User } from './User';
 
 @Component({
     selector: 'app-list-roomtype',
@@ -9,6 +10,7 @@ import { DialogboxComponent } from 'app/main/app/components/dialogbox/dialogbox.
     styleUrls: ['./list-roomtype.component.scss']
 })
 export class ListRoomtypeComponent implements OnInit {
+    users: Array<User>;
     displayedColumns: string[] = [
         'Name',
         'Description',
@@ -21,7 +23,7 @@ export class ListRoomtypeComponent implements OnInit {
 
     constructor(
         private _roomTypeService: RoomtypeService, public dialog: MatDialog
-    ) { }
+    ) {this.users = new Array<User>(); }
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
@@ -36,7 +38,6 @@ export class ListRoomtypeComponent implements OnInit {
     }
     ngOnInit(): void {
         this.getAllRoomTypes();
-
     }
 
     getRoomType(Id: string): void {
@@ -54,7 +55,7 @@ export class ListRoomtypeComponent implements OnInit {
         this._roomTypeService.deleteRoomType(Id).subscribe(
             result => {
                 if (result.status === 100) {
-                    this.getAllRoomTypes();
+                    // this.getAllRoomTypes();
                     // alert(result.message);
                 }
             }
@@ -82,11 +83,11 @@ export class ListRoomtypeComponent implements OnInit {
         });
        
         dialogRef.afterClosed().subscribe(result => {
-            
-            if (result === 'Confirm') {
-                this.deleteRoomType(elemant.id);
-                // this.getAllRoomTypes();
-                console.log('The dialog was closed');
+            console.log('The dialog was closed');
+            if (result.status === 'Confirm') {
+                
+                this._roomTypeService.deleteRoomType(elemant.Id);
+                this.getAllRoomTypes();
             }
             else { 
                 if (result === 'Cancel') {

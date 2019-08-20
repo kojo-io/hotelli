@@ -84,7 +84,7 @@ export class ListRoomtypeComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result === 'Confirm') {
-                this.deleteRoomType(elemant.id);
+                this.deleteRoomType(elemant.Id);
                 // this.getAllRoomTypes();
                 console.log('The dialog was closed');
             }

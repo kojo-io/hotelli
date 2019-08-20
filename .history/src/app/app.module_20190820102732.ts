@@ -20,7 +20,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // tslint:disable-next-line: max-line-length
-import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatCardModule, MatSelectModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatIconModule, MatTabsModule, MatBadgeModule, MatCheckboxModule, MatDatepickerModule, MatButtonModule, MatProgressSpinnerModule, MatTableModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatCardModule, MatSelectModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatIconModule, MatTabsModule, MatBadgeModule, MatCheckboxModule, MatDatepickerModule, MatButtonModule, MatProgressSpinnerModule, MatTableModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppsComponent } from './main/app/app.component';
 import { DialogboxComponent } from './main/app/components/dialogbox/dialogbox.component';
@@ -31,7 +31,7 @@ import { DialogboxComponent } from './main/app/components/dialogbox/dialogbox.co
         AppComponent,
         AppsComponent,
         DialogboxComponent
-
+        
     ],
     imports: [
         /* Angular modules */
@@ -83,8 +83,6 @@ import { DialogboxComponent } from './main/app/components/dialogbox/dialogbox.co
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true },
-        { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: [] },
     ],
     entryComponents: [DialogboxComponent]
 })
