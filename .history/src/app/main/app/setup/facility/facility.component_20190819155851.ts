@@ -2,14 +2,11 @@ import { FacilityService } from './facility.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSnackBar, MatPaginator, MatSort } from '@angular/material';
-import { fuseAnimations } from '@fuse/animations';
 
 @Component({
     selector: 'app-facility',
     templateUrl: './facility.component.html',
-    styleUrls: ['./facility.component.scss'],
-    animations: fuseAnimations
-
+    styleUrls: ['./facility.component.scss']
 })
 export class FacilityComponent implements OnInit {
 

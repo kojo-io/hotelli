@@ -25,7 +25,7 @@
           <div class="search-input-wrapper mx-24 m-md-0" fxFlex="1 0 auto" fxLayout="row"
               fxLayoutAlign="start center">
                <mat-form-field floatLabel="never" fxFlex="1 0 auto">
-                   <mat-label>Facility</mat-label>
+                   <mat-label>Name</mat-label>
                    <mat-select (selectionChange)="getFacility($event.value)">
                        <mat-option *ngFor="let item of facility" [value]="item.id">
                            {{item.name}}

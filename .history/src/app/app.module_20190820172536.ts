@@ -54,7 +54,7 @@ import { DialogboxComponent } from './main/app/components/dialogbox/dialogbox.co
         MatTabsModule,
         MatBadgeModule,
         MatCheckboxModule,
-        // BrowserAnimationsModule,
+        BrowserAnimationsModule,
         NgxDatatableModule,
         MatDatepickerModule,
         MomentModule,

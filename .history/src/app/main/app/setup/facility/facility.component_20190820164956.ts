@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 
+
 @Component({
     selector: 'app-facility',
     templateUrl: './facility.component.html',
@@ -21,6 +22,7 @@ export class FacilityComponent implements OnInit {
         'Action'
     ];
     facilityForm: FormGroup;
+    facility: any;
     fId: any;
     facilities: any;
     facilityTypes: any;
@@ -178,5 +180,5 @@ export class FacilityComponent implements OnInit {
             }
         );
     }
-
+   
 }

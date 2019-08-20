@@ -24,7 +24,7 @@ import { MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, 
 import { TranslateModule } from '@ngx-translate/core';
 import { AppsComponent } from './main/app/app.component';
 import { DialogboxComponent } from './main/app/components/dialogbox/dialogbox.component';
-// import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -33,7 +33,7 @@ import { DialogboxComponent } from './main/app/components/dialogbox/dialogbox.co
         AppComponent,
         AppsComponent,
         DialogboxComponent,
-        // FlexLayoutModule
+        FlexLayoutModule
 
     ],
     imports: [
