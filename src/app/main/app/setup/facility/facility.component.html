@@ -27,7 +27,7 @@
                <mat-form-field floatLabel="never" fxFlex="1 0 auto">
                    <mat-label>Facility</mat-label>
                    <mat-select (selectionChange)="getFacility($event.value)">
-                       <mat-option *ngFor="let item of facility" [value]="item.id">
+                       <mat-option *ngFor="let item of facilityTypes" [value]="item.id">
                            {{item.name}}
                        </mat-option>
                    </mat-select>
@@ -44,9 +44,9 @@
           </div>
           <!-- / SEARCH -->
 
-          <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="newfacility()">
+          <!-- <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="newfacility()">
               <span>ADD ITEM</span>
-          </button>
+          </button> -->
       </div>
 
     </div>
