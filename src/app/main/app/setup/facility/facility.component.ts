@@ -2,14 +2,11 @@ import { FacilityService } from './facility.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSnackBar, MatPaginator, MatSort } from '@angular/material';
-import { fuseAnimations } from '@fuse/animations';
 
 @Component({
     selector: 'app-facility',
     templateUrl: './facility.component.html',
-    styleUrls: ['./facility.component.scss'],
-    animations: fuseAnimations
-
+    styleUrls: ['./facility.component.scss']
 })
 export class FacilityComponent implements OnInit {
 
@@ -45,12 +42,12 @@ export class FacilityComponent implements OnInit {
             facilityTypeid: ['', Validators.required]
         });
 
-       
+
     }
 
     getFacilityTypes(): void {
         this._facilityService.getFaciltyTypes().subscribe(result => {
-           // console.log(result);
+            // console.log(result);
             this.facilityTypes = result;
         });
     }
@@ -68,21 +65,21 @@ export class FacilityComponent implements OnInit {
     getFacility(): void {
         this._facilityService.getFacilties().subscribe(result => {
             console.log(result);
-            if (result.status === 'Error'){
+            if (result.status === 'Error') {
                 this.snackBar.open(result.message, 'dismiss', {
                     duration: 4000,
                     horizontalPosition: 'center',
                     verticalPosition: 'top'
                 });
             }
-            else{
+            else {
                 this.facilities = result;
                 this.datasource = new MatTableDataSource<any>(this.facilities);
                 this.datasource.paginator = this.paginator;
                 this.datasource.sort = this.sort;
             }
 
-            
+
         });
     }
 
@@ -95,7 +92,7 @@ export class FacilityComponent implements OnInit {
             isActive: ele.isActive,
             facilityTypeid: ele.facilityTypeId
         });
-        
+
     }
 
     save(): void {
