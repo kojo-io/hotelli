@@ -125,7 +125,7 @@ export class BookingService {
     }
 
     addGuest(info): any {
-        info.branchId = this.baseService.getCurrentBranch().id;
+        // info.branchId = this.baseService.getCurrentBranch().id;
         return this.httpClient.post(
             this.baseService.getBaseUrl() + 'Guests/Guest',
             info

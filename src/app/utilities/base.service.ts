@@ -5,7 +5,10 @@ import { HttpClient } from '@angular/common/http';
 
 
 //   const baseURL = 'https://localhost:44341/api/';
-  const baseURL = 'https://api.hoteli.devwas.com/api/';
+//   const baseURL = 'https://api.hoteli.devwas.com/api/';
+const baseURL = 'https://localhost:5001/api/';
+// const baseURL = 'https://localhost:44341/api/';
+
 //  CRRuntime_32bit_13_0_22
 @Injectable({
   providedIn: 'root'
